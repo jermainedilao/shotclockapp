@@ -1,0 +1,33 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/windowBackground</item>
+        <item name="actionBarStyle">@style/ActionBarStyle</item>
+    </style>
+
+    <style name="ActionBarStyle" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="CircleButton" parent="Base.Widget.AppCompat.Button.Borderless">
+        <item name="android:fontFamily">material</item>
+        <item name="android:letterSpacing">0.5</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="CircleButtonLight" parent="CircleButton">
+        <item name="android:textColor">@drawable/circle_button_text_color_selector</item>
+        <item name="android:background">@drawable/circle_button_selector</item>
+    </style>
+
+    <style name="CircleButtonPale" parent="CircleButton">
+        <item name="android:background">@drawable/circle_button_pale_selector</item>
+    </style>
+
+</resources>

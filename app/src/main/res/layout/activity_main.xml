@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="jermaine.shotclockapp.view.activity.MainActivity">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false" />
+
+    <TextView
+        android:id="@+id/next_page_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/timer"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="@string/twenty_four"
+        android:textColor="@color/light_theme_prev_next_page_color"
+        android:textSize="@dimen/text_size_large"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35000002" />
+
+    <TextView
+        android:id="@+id/prev_page_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/timer"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="@string/fourteen"
+        android:textColor="@color/light_theme_prev_next_page_color"
+        android:textSize="@dimen/text_size_large"
+        android:visibility="visible"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35000002" />
+
+    <Button
+        android:id="@+id/button_minus_1"
+        style="@style/CircleButtonLight"
+        android:layout_width="51dp"
+        android:layout_height="51dp"
+        android:contentDescription="Subtract one second"
+        android:text="-1"
+        android:onClick="onMinus1Click"
+        app:layout_constraintBottom_toBottomOf="@+id/stop_play_button"
+        app:layout_constraintEnd_toStartOf="@+id/stop_play_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/stop_play_button" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/stop_play_button"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:clickable="true"
+        android:contentDescription="Start time"
+        android:scaleType="center"
+        android:src="@drawable/ic_play_arrow_white_44dp"
+        android:onClick="onPlayClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_plus_1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_minus_1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95" />
+
+    <Button
+        android:id="@+id/button_plus_1"
+        style="@style/CircleButtonLight"
+        android:layout_width="51dp"
+        android:layout_height="51dp"
+        android:contentDescription="Add one second"
+        android:text="+1"
+        android:onClick="onPlus1Click"
+        app:layout_constraintBottom_toBottomOf="@+id/stop_play_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/stop_play_button"
+        app:layout_constraintTop_toTopOf="@+id/stop_play_button" />
+
+    <ImageButton
+        android:id="@+id/button_reset"
+        style="@style/CircleButtonPale"
+        android:layout_width="51dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="40dp"
+        android:contentDescription="Reset"
+        android:onClick="onResetClick"
+        android:src="@drawable/circle_button_pale_src_selector"
+        app:layout_constraintBottom_toTopOf="@+id/stop_play_button"
+        app:layout_constraintEnd_toEndOf="@+id/stop_play_button"
+        app:layout_constraintStart_toStartOf="@+id/stop_play_button" />
+
+</android.support.constraint.ConstraintLayout>
