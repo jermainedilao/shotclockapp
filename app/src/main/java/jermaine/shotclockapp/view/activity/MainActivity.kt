@@ -12,6 +12,8 @@ import android.view.View
 import jermaine.shotclockapp.R
 import jermaine.shotclockapp.extension.animateHide
 import jermaine.shotclockapp.extension.animateShow
+import jermaine.shotclockapp.extension.getThemeType
+import jermaine.shotclockapp.extension.startSettingsActivity
 import jermaine.shotclockapp.view.adapter.TimerPagerAdapter
 import jermaine.shotclockapp.view.fragment.Timer14Fragment
 import jermaine.shotclockapp.view.fragment.Timer24Fragment
@@ -24,6 +26,8 @@ class MainActivity : AppCompatActivity(), TimerObservable, TimerExpirationObserv
 
     companion object {
         val TAG = "MainActivity"
+        val THEME_LIGHT = "theme:light"
+        val THEME_DARK = "theme:dark"
     }
 
     private val list = listOf(Timer14Fragment.TIMER_14, Timer24Fragment.TIMER_24)
@@ -40,13 +44,25 @@ class MainActivity : AppCompatActivity(), TimerObservable, TimerExpirationObserv
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        handleThemese()
 
         shortAnimationDuration = resources.getInteger(android.R.integer.config_shortAnimTime).toLong()
 
         initializeToolbar()
         initializeTextViews()
         initializeViewPager()
+    }
+
+    private fun handleThemese() {
+        when (getThemeType()) {
+            THEME_LIGHT -> {
+                setTheme(R.style.AppThemeLight)
+            }
+            THEME_DARK -> {
+                setTheme(R.style.AppThemeDark)
+            }
+        }
+        setContentView(R.layout.activity_main)
     }
 
     private fun initializeToolbar() {
@@ -129,7 +145,7 @@ class MainActivity : AppCompatActivity(), TimerObservable, TimerExpirationObserv
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         Log.d(TAG, "onCreateOptionsMenu: ")
-        menuInflater.inflate(R.menu.menu, menu)
+        menuInflater.inflate(R.menu.settings_menu, menu)
         return true
     }
 
@@ -137,7 +153,7 @@ class MainActivity : AppCompatActivity(), TimerObservable, TimerExpirationObserv
         Log.d(TAG, "onOptionsItemSelected: ")
         when (item?.itemId) {
             R.id.action_settings -> {
-                Log.d(TAG, "onOptionsItemSelected: settings")
+                startSettingsActivity()
                 return true
             }
         }

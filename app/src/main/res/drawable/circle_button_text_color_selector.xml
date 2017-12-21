@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="@color/light_round_button_pressed_text_color" android:state_pressed="true" />
-    <item android:color="@color/light_round_button_default_text_color" android:state_pressed="false" />
-    <item android:color="@color/light_round_button_default_text_color" />
+    <item android:color="?circleButtonPressedTextColor" android:state_pressed="true" />
+    <item android:color="?circleButtonDefaultTextColor" android:state_pressed="false" />
+    <item android:color="?circleButtonDefaultTextColor" />
 </selector>

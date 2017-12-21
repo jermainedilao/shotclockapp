@@ -21,7 +21,7 @@
         android:fontFamily="@font/timer"
         android:foreground="?android:attr/selectableItemBackground"
         android:text="@string/twenty_four"
-        android:textColor="@color/light_theme_prev_next_page_color"
+        android:textColor="?prevNextPageTextColor"
         android:textSize="@dimen/text_size_large"
         android:clickable="true"
         android:focusable="true"
@@ -39,7 +39,7 @@
         android:fontFamily="@font/timer"
         android:foreground="?android:attr/selectableItemBackground"
         android:text="@string/fourteen"
-        android:textColor="@color/light_theme_prev_next_page_color"
+        android:textColor="?prevNextPageTextColor"
         android:textSize="@dimen/text_size_large"
         android:visibility="visible"
         android:clickable="true"
@@ -51,7 +51,7 @@
 
     <Button
         android:id="@+id/button_minus_1"
-        style="@style/CircleButtonLight"
+        style="@style/CircleButton"
         android:layout_width="51dp"
         android:layout_height="51dp"
         android:contentDescription="Subtract one second"
@@ -81,7 +81,7 @@
 
     <Button
         android:id="@+id/button_plus_1"
-        style="@style/CircleButtonLight"
+        style="@style/CircleButton"
         android:layout_width="51dp"
         android:layout_height="51dp"
         android:contentDescription="Add one second"
@@ -95,7 +95,7 @@
 
     <ImageButton
         android:id="@+id/button_reset"
-        style="@style/CircleButtonPale"
+        style="@style/CircleButtonLightPale"
         android:layout_width="51dp"
         android:layout_height="51dp"
         android:layout_marginBottom="40dp"

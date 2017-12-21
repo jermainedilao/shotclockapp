@@ -2,4 +2,5 @@
 <resources>
     <dimen name="text_size_giant">200sp</dimen>
     <dimen name="text_size_large">44sp</dimen>
+    <dimen name="text_size_normal">18sp</dimen>
 </resources>

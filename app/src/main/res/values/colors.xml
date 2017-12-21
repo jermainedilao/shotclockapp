@@ -5,18 +5,47 @@
     <color name="colorPrimaryDark">#1AD8D8D8</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="darkThemeColorPrimary">#FF191414</color>
+    <color name="darkThemeColorPrimaryDark">#1AD8D8D8</color>
+    <color name="darkThemeWindowBackground">#FF191414</color>
+
+    <color name="settingsWindowBackground">#FFFBFBFB</color>
+    <color name="settingsWindowColorPrimaryDark">#1AD8D8D8</color>
+
     <color name="light_theme_primary_text_color">#000000</color>
     <color name="light_theme_ghost_text_color">#11000000</color>
     <color name="light_theme_prev_next_page_color">#33030f23</color>
 
-    <color name="light_round_button_stroke">#FFF9008B</color>
-    <color name="light_round_button_pressed">#FFF9008B</color>
+    <color name="dark_theme_primary_text_color">#FFF9008B</color>
+    <color name="dark_theme_prev_next_page_color">#AAFFFFFF</color>
 
-    <color name="light_round_button_default_text_color">#FFF9008B</color>
-    <color name="light_round_button_pressed_text_color">#FFFFFF</color>
+    <color name="light_theme_round_button_stroke">#FFF9008B</color>
+    <color name="light_theme_round_button_pressed">#FFF9008B</color>
 
-    <color name="light_round_button_pale_stroke">#FFCCCCCC</color>
-    <color name="light_round_button_pale_pressed">#FFCCCCCC</color>
-    <color name="light_round_button_pale_content_default">#FFCCCCCC</color>
-    <color name="light_round_button_pale_content_pressed">#FFFFFF</color>
+    <color name="dark_theme_round_button_stroke">#FFFFFFFF</color>
+    <color name="dark_theme_round_button_pressed">#FFFFFFFF</color>
+
+    <color name="light_theme_round_button_default_text_color">#FFF9008B</color>
+    <color name="light_theme_round_button_pressed_text_color">#FFFFFF</color>
+
+    <color name="dark_theme_round_button_default_text_color">#FFFFFFFF</color>
+    <color name="dark_theme_round_button_pressed_text_color">#FF191414</color>
+
+    <color name="light_theme_round_button_pale_stroke">#FFCCCCCC</color>
+    <color name="light_theme_round_button_pale_pressed">#FFCCCCCC</color>
+
+    <color name="dark_theme_round_button_pale_stroke">#40FFFFFF</color>
+    <color name="dark_theme_round_button_pale_pressed">#40FFFFFF</color>
+
+    <color name="light_theme_round_button_pale_content_default">#FFCCCCCC</color>
+    <color name="light_theme_round_button_pale_content_pressed">#FFFFFF</color>
+
+    <color name="dark_theme_round_button_pale_content_default">#94FFFFFF</color>
+    <color name="dark_theme_round_button_pale_content_pressed">#FF191414</color>
+
+    <color name="light_theme_settings_icon_default_color">#4D191414</color>
+    <color name="light_theme_settings_icon_pressed_color">#80FFFFFF</color>
+
+    <color name="dark_theme_settings_icon_default_color">#80FFFFFF</color>
+    <color name="dark_theme_settings_icon_pressed_color">#4D191414</color>
 </resources>

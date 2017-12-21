@@ -1,20 +1,12 @@
 package jermaine.shotclockapp.extension
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
-import android.support.v7.app.AppCompatActivity
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.view.View
+import jermaine.shotclockapp.view.activity.MainActivity
+import jermaine.shotclockapp.view.activity.SettingsActivity
 import jermaine.shotclockapp.view.listener.VisibilityAnimatorListener
-
-
-fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int) {
-    supportFragmentManager.inTransaction { add(frameId, fragment) }
-}
-
-inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) {
-    beginTransaction().func().commit()
-}
 
 fun View.animateHide(duration: Long) {
     animate().alpha(0f)
@@ -28,3 +20,21 @@ fun View.animateShow(duration: Long) {
             .setDuration(duration)
             .setListener(VisibilityAnimatorListener(this, View.VISIBLE))
 }
+
+fun Context.startSettingsActivity() = startActivity(Intent(this, SettingsActivity::class.java))
+
+fun Context.startMainActivityClrTsk() {
+    val intent = Intent(this, MainActivity::class.java)
+    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+    startActivity(intent)
+}
+
+fun Context.storeThemeType(themeType: String) = getMySharedPreferences().storeThemeType { putString("pref:theme_type", themeType) }
+
+inline fun SharedPreferences.storeThemeType(putThemeType: SharedPreferences.Editor.() -> SharedPreferences.Editor) {
+    edit().putThemeType().apply()
+}
+
+fun Context.getThemeType(): String = getMySharedPreferences().getString("pref:theme_type", MainActivity.THEME_LIGHT)
+
+fun Context.getMySharedPreferences(): SharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE)

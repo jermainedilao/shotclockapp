@@ -1,13 +1,60 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light">
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/windowBackground</item>
+        <item name="android:textColorPrimary">@color/light_theme_primary_text_color</item>
+        <item name="android:textColor">@color/light_theme_primary_text_color</item>
+    </style>
+
+    <style name="AppThemeLight" parent="BaseAppTheme">
         <item name="actionBarStyle">@style/ActionBarStyle</item>
+
+        <!-- CUSTOM ATTRIBUTES -->
+        <!--https://stackoverflow.com/a/12704879/5285687-->
+        <item name="prevNextPageTextColor">@color/light_theme_prev_next_page_color</item>
+        <item name="settingsIconDefaultColor">@color/light_theme_settings_icon_default_color</item>
+        <item name="settingsIconPressedColor">@color/light_theme_settings_icon_pressed_color</item>
+        <item name="circleButtonStrokeColor">@color/light_theme_round_button_stroke</item>
+        <item name="circleButtonPressedColor">@color/light_theme_round_button_pressed</item>
+        <item name="circleButtonDefaultTextColor">@color/light_theme_round_button_default_text_color</item>
+        <item name="circleButtonPressedTextColor">@color/light_theme_round_button_pressed_text_color</item>
+        <item name="circleButtonPaleStrokeColor">@color/light_theme_round_button_pale_stroke</item>
+        <item name="circleButtonPalePressedColor">@color/light_theme_round_button_pale_pressed</item>
+        <item name="circleButtonPaleContentDefaultColor">@color/light_theme_round_button_pale_content_default</item>
+        <item name="circleButtonPaleContentPressedColor">@color/light_theme_round_button_pale_content_pressed</item>
+    </style>
+
+    <style name="AppThemeDark" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/darkThemeColorPrimary</item>
+        <item name="colorPrimaryDark">@color/darkThemeColorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/darkThemeWindowBackground</item>
+        <item name="actionBarStyle">@style/ActionBarStyle</item>
+        <item name="android:textColor">@color/dark_theme_primary_text_color</item>
+
+        <!-- CUSTOM ATTRIBUTES -->
+        <!--https://stackoverflow.com/a/12704879/5285687-->
+        <item name="prevNextPageTextColor">@color/dark_theme_prev_next_page_color</item>
+        <item name="settingsIconDefaultColor">@color/dark_theme_settings_icon_default_color</item>
+        <item name="settingsIconPressedColor">@color/dark_theme_settings_icon_pressed_color</item>
+        <item name="circleButtonStrokeColor">@color/dark_theme_round_button_stroke</item>
+        <item name="circleButtonPressedColor">@color/dark_theme_round_button_pressed</item>
+        <item name="circleButtonDefaultTextColor">@color/dark_theme_round_button_default_text_color</item>
+        <item name="circleButtonPressedTextColor">@color/dark_theme_round_button_pressed_text_color</item>
+        <item name="circleButtonPaleStrokeColor">@color/dark_theme_round_button_pale_stroke</item>
+        <item name="circleButtonPalePressedColor">@color/dark_theme_round_button_pale_pressed</item>
+        <item name="circleButtonPaleContentDefaultColor">@color/dark_theme_round_button_pale_content_default</item>
+        <item name="circleButtonPaleContentPressedColor">@color/dark_theme_round_button_pale_content_pressed</item>
+    </style>
+
+    <style name="SettingsTheme" parent="BaseAppTheme">
+        <item name="android:windowBackground">@color/settingsWindowBackground</item>
+        <item name="colorPrimaryDark">@color/settingsWindowColorPrimaryDark</item>
     </style>
 
     <style name="ActionBarStyle" parent="Widget.AppCompat.Light.ActionBar">
@@ -15,18 +62,18 @@
         <item name="elevation">0dp</item>
     </style>
 
-    <style name="CircleButton" parent="Base.Widget.AppCompat.Button.Borderless">
+    <style name="BaseCircleButton" parent="Base.Widget.AppCompat.Button.Borderless">
         <item name="android:fontFamily">material</item>
         <item name="android:letterSpacing">0.5</item>
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="CircleButtonLight" parent="CircleButton">
+    <style name="CircleButton" parent="BaseCircleButton">
         <item name="android:textColor">@drawable/circle_button_text_color_selector</item>
         <item name="android:background">@drawable/circle_button_selector</item>
     </style>
 
-    <style name="CircleButtonPale" parent="CircleButton">
+    <style name="CircleButtonLightPale" parent="BaseCircleButton">
         <item name="android:background">@drawable/circle_button_pale_selector</item>
     </style>
 

@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/timer"
         android:text="14"
-        android:textColor="@color/light_theme_primary_text_color"
         android:textSize="@dimen/text_size_giant"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
