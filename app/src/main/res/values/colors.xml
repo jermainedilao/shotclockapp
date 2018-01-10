@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#FFFFFFFF</color>
     <color name="windowBackground">#FFFFFFFF</color>
-    <color name="colorPrimaryDark">#1AD8D8D8</color>
+    <color name="colorPrimaryDark">#D8D8D8</color>
     <color name="colorAccent">#FF4081</color>
 
     <color name="darkThemeColorPrimary">#FF191414</color>
@@ -10,7 +10,7 @@
     <color name="darkThemeWindowBackground">#FF191414</color>
 
     <color name="settingsWindowBackground">#FFFBFBFB</color>
-    <color name="settingsWindowColorPrimaryDark">#1AD8D8D8</color>
+    <color name="settingsWindowColorPrimaryDark">#D8D8D8</color>
 
     <color name="light_theme_primary_text_color">#000000</color>
     <color name="light_theme_ghost_text_color">#11000000</color>
