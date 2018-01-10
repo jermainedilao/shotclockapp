@@ -101,7 +101,6 @@ class MainActivity : AppCompatActivity(), TimerObservable, TimerExpirationObserv
             }
 
             override fun onPageSelected(position: Int) {
-                stop()
                 observer?.onReset()
             }
         })
@@ -200,6 +199,12 @@ class MainActivity : AppCompatActivity(), TimerObservable, TimerExpirationObserv
 
     override fun setObserver(observer: TimerObserver) {
         this.observer = observer
+
+        if (playStatus) {
+            start()
+        } else {
+            stop()
+        }
     }
 
     override fun onExpire() {
