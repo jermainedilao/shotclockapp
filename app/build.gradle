@@ -4,7 +4,20 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+def keyStorePropertiesFile = rootProject.file("keystore.properties")
+def keyStoreProperties = new Properties()
+
+keyStoreProperties.load(new FileInputStream(keyStorePropertiesFile))
+
 android {
+    signingConfigs {
+        config {
+            keyAlias keyStoreProperties['KEY_ALIAS']
+            keyPassword keyStoreProperties['KEY_PASSWORD']
+            storeFile file(keyStoreProperties['STORE_FILE'])
+            storePassword keyStoreProperties['KEYSTORE_PASSWORD']
+        }
+    }
     compileSdkVersion 26
     defaultConfig {
         applicationId "jermaine.shotclockapp"
@@ -23,15 +36,14 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation "com.android.support:design:26.1.0"
+    implementation 'com.android.support:design:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
     implementation "io.reactivex.rxjava2:rxjava:$rxjava2_version"
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
     implementation 'com.github.thepacific:rx2timer:0.0.3'
