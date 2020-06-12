@@ -35,6 +35,6 @@ inline fun SharedPreferences.storeThemeType(putThemeType: SharedPreferences.Edit
     edit().putThemeType().apply()
 }
 
-fun Context.getThemeType(): String = getMySharedPreferences().getString("pref:theme_type", MainActivity.THEME_LIGHT)
+fun Context.getThemeType(): String = getMySharedPreferences().getString("pref:theme_type", MainActivity.THEME_LIGHT) ?: MainActivity.THEME_LIGHT
 
 fun Context.getMySharedPreferences(): SharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE)

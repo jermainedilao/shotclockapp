@@ -3,12 +3,12 @@ package jermaine.shotclockapp.view.activity
 import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
 import jermaine.shotclockapp.R
 import jermaine.shotclockapp.extension.animateHide
 import jermaine.shotclockapp.extension.animateShow
@@ -25,9 +25,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(), TimerObservable, TimerExpirationObserver {
 
     companion object {
-        val TAG = "MainActivity"
-        val THEME_LIGHT = "theme:light"
-        val THEME_DARK = "theme:dark"
+        const val TAG = "MainActivity"
+        const val THEME_LIGHT = "theme:light"
+        const val THEME_DARK = "theme:dark"
     }
 
     private val list = listOf(Timer14Fragment.TIMER_14, Timer24Fragment.TIMER_24)
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity(), TimerObservable, TimerExpirationObserv
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        handleThemese()
+        handleThemes()
 
         shortAnimationDuration = resources.getInteger(android.R.integer.config_shortAnimTime).toLong()
 
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity(), TimerObservable, TimerExpirationObserv
         initializeViewPager()
     }
 
-    private fun handleThemese() {
+    private fun handleThemes() {
         when (getThemeType()) {
             THEME_LIGHT -> {
                 setTheme(R.style.AppThemeLight)
