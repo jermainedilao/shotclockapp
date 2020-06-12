@@ -4,11 +4,11 @@ import android.content.Context
 import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -36,15 +36,17 @@ class Timer24Fragment : Fragment(), TimerObserver {
     private var compositeDisposable: CompositeDisposable? = null
     private lateinit var timerObservable: Observable<Long>
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_timer_24, null)
+    private var hasResumed: Boolean = false
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_timer_24, null)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            val typeface = Typeface.createFromAsset(context.assets, "fonts/dsdigi.TTF")
+            val typeface = Typeface.createFromAsset(requireContext().assets, "fonts/dsdigi.TTF")
             timer_textView.typeface = typeface
             timer_background_textView.typeface = typeface
         }
@@ -53,12 +55,12 @@ class Timer24Fragment : Fragment(), TimerObserver {
         compositeDisposable = CompositeDisposable()
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
 
         if (context is TimerObservable) {
             myTimerObservable = context
-            initializeMyTimerObservable(userVisibleHint)
+            initializeMyTimerObservable(hasResumed)
         }
 
         if (context is TimerExpirationObserver) {
@@ -66,9 +68,16 @@ class Timer24Fragment : Fragment(), TimerObserver {
         }
     }
 
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
-        initializeMyTimerObservable(isVisibleToUser)
+    override fun onResume() {
+        super.onResume()
+        hasResumed = true
+        initializeMyTimerObservable(true)
+    }
+
+    override fun onPause() {
+        hasResumed = false
+        initializeMyTimerObservable(false)
+        super.onPause()
     }
 
     private fun initializeMyTimerObservable(isVisibleToUser: Boolean) {
@@ -85,31 +94,35 @@ class Timer24Fragment : Fragment(), TimerObserver {
         if (!isVisible) return
 
         timerObservable = Observable.interval(1, 1, TimeUnit.SECONDS)
-                .concatMap {
-                    Log.d(Timer24Fragment.TAG, "onTimePlay: ${initialValue - 1}")
-                    Observable.just(initialValue - 1)
-                }
-                .takeWhile {
-                    it >= 0
-                }
+            .concatMap {
+                Log.d(Timer24Fragment.TAG, "onTimePlay: ${initialValue - 1}")
+                Observable.just(initialValue - 1)
+            }
+            .takeWhile {
+                it >= 0
+            }
 
-        compositeDisposable?.add(timerObservable
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext {
-                    Log.d(Timer14Fragment.TAG, "onTimePlay: $it")
-                    initialValue = it
-                }
-                .subscribe({
+        timerObservable
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext {
+                Log.d(Timer14Fragment.TAG, "onTimePlay: $it")
+                initialValue = it
+            }
+            .subscribe(
+                {
                     Log.d(TAG, "onTimePlay: $it")
                     timer_textView.text = it.toString()
-                }, {
+                },
+                {
                     Log.e(TAG, "onTimePlay: onError", it)
-                }, {
+                },
+                {
                     Log.d(TAG, "onTimePlay: onComplete")
                     myTimerExpirationObserver?.onExpire()
-                })
-        )
+                }
+            )
+            .apply { compositeDisposable?.add(this) }
     }
 
     private fun onTimeStop() {

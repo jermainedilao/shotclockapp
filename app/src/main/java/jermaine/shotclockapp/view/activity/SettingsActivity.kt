@@ -1,12 +1,12 @@
 package jermaine.shotclockapp.view.activity
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.PopupMenu
 import android.util.Log
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
 import jermaine.shotclockapp.R
 import jermaine.shotclockapp.extension.getThemeType
 import jermaine.shotclockapp.extension.startMainActivityClrTsk
@@ -16,7 +16,7 @@ import jermaine.shotclockapp.extension.storeThemeType
 class SettingsActivity : AppCompatActivity() {
 
     companion object {
-        val TAG = "SettingsActivity"
+        const val TAG = "SettingsActivity"
     }
 
     private var hasChangedTheme = false
@@ -29,7 +29,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     fun onThemeClick(view: View) {
-        val popupMenu = PopupMenu(this, view, Gravity.RIGHT)
+        val popupMenu = PopupMenu(this, view, Gravity.END)
         popupMenu.menuInflater.inflate(R.menu.popup_menu_themes, popupMenu.menu)
         popupMenu.setOnMenuItemClickListener {
             hasChangedTheme = true
