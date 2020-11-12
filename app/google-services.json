@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "757122211037",
+    "firebase_url": "https://shotclockapp-c7b0d.firebaseio.com",
+    "project_id": "shotclockapp-c7b0d",
+    "storage_bucket": "shotclockapp-c7b0d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757122211037:android:5c7ec17047bc9a22e68f34",
+        "android_client_info": {
+          "package_name": "jermaine.shotclockapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "757122211037-hk5rkrvibisj58fn1f4jnfqdpqb9m6sc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAWLWK7U9DkCu7cXc0ZlB6z_QopSwseV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "757122211037-hk5rkrvibisj58fn1f4jnfqdpqb9m6sc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757122211037:android:df67fd6be08e2a4ae68f34",
+        "android_client_info": {
+          "package_name": "jermaine.shotclockapp.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "757122211037-hk5rkrvibisj58fn1f4jnfqdpqb9m6sc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAWLWK7U9DkCu7cXc0ZlB6z_QopSwseV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "757122211037-hk5rkrvibisj58fn1f4jnfqdpqb9m6sc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
