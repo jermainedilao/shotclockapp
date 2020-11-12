@@ -148,9 +148,9 @@ class MainActivity : AppCompatActivity(), TimerObservable, TimerExpirationObserv
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d(TAG, "onOptionsItemSelected: ")
-        when (item?.itemId) {
+        when (item.itemId) {
             R.id.action_settings -> {
                 startSettingsActivity()
                 return true
