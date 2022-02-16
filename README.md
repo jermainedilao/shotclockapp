@@ -22,4 +22,5 @@ I found myself with nothing to do on a Saturday morning. Since me and my friends
     * Update Architecture (ViewModels, Package by Feature)
     * Jetpack Compose
 2. Add unit tests
-2. Setup CI/CD on Bitrise
+3. Add ktlint pre-commit hook
+4. Setup CI/CD on Bitrise
