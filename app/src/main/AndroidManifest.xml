@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeLight">
-        <activity android:name=".view.activity.MainActivity"
+        <activity
+            android:name=".view.activity.MainActivity"
+            android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,10 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activity.SettingsActivity"
+        <activity
+            android:name=".view.activity.SettingsActivity"
+            android:label="@string/settings"
             android:screenOrientation="portrait"
-            android:theme="@style/SettingsTheme"
-            android:label="@string/settings"/>
+            android:theme="@style/SettingsTheme" />
     </application>
 
 </manifest>
