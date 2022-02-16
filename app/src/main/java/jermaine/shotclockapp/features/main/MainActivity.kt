@@ -10,6 +10,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import jermaine.shotclockapp.R
+import jermaine.shotclockapp.databinding.ActivityMainBinding
 import jermaine.shotclockapp.extension.animateHide
 import jermaine.shotclockapp.extension.animateShow
 import jermaine.shotclockapp.extension.getThemeType
@@ -18,7 +19,6 @@ import jermaine.shotclockapp.features.main.adapter.TimerPagerAdapter
 import jermaine.shotclockapp.features.main.listeners.observables.TimerExpirationObserver
 import jermaine.shotclockapp.features.main.listeners.observables.TimerObservable
 import jermaine.shotclockapp.features.main.listeners.observables.TimerObserver
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), TimerObservable, TimerExpirationObserver {
 
@@ -30,9 +30,9 @@ class MainActivity : AppCompatActivity(), TimerObservable, TimerExpirationObserv
 
     private val list = listOf(Timer14Fragment.TIMER_14, Timer24Fragment.TIMER_24)
 
+    private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: TimerPagerAdapter
     private var shortAnimationDuration: Long = 0
-
     private var observer: TimerObserver? = null
 
     /**
@@ -44,7 +44,8 @@ class MainActivity : AppCompatActivity(), TimerObservable, TimerExpirationObserv
         super.onCreate(savedInstanceState)
         handleThemes()
 
-        shortAnimationDuration = resources.getInteger(android.R.integer.config_shortAnimTime).toLong()
+        shortAnimationDuration =
+            resources.getInteger(android.R.integer.config_shortAnimTime).toLong()
 
         initializeToolbar()
         initializeTextViews()
@@ -60,7 +61,8 @@ class MainActivity : AppCompatActivity(), TimerObservable, TimerExpirationObserv
                 setTheme(R.style.AppThemeDark)
             }
         }
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 
     private fun initializeToolbar() {
@@ -70,40 +72,44 @@ class MainActivity : AppCompatActivity(), TimerObservable, TimerExpirationObserv
     private fun initializeTextViews() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             val typeface = Typeface.createFromAsset(assets, "fonts/dsdigi.TTF")
-            prev_page_text_view.typeface = typeface
-            next_page_text_view.typeface = typeface
+            binding.txtPrevPage.typeface = typeface
+            binding.txtNextPage.typeface = typeface
         }
 
-        prev_page_text_view.setOnClickListener {
-            prev_page_text_view.animateHide(shortAnimationDuration)
-            view_pager.setCurrentItem(view_pager.currentItem - 1, true)
+        binding.txtPrevPage.setOnClickListener {
+            binding.txtPrevPage.animateHide(shortAnimationDuration)
+            binding.viewPager.setCurrentItem(binding.viewPager.currentItem - 1, true)
         }
-        next_page_text_view.setOnClickListener {
-            next_page_text_view.animateHide(shortAnimationDuration)
-            view_pager.setCurrentItem(view_pager.currentItem + 1, true)
+        binding.txtNextPage.setOnClickListener {
+            binding.txtNextPage.animateHide(shortAnimationDuration)
+            binding.viewPager.setCurrentItem(binding.viewPager.currentItem + 1, true)
         }
     }
 
     private fun initializeViewPager() {
         adapter = TimerPagerAdapter(supportFragmentManager, list)
-        view_pager.pageMargin = 0
-        view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        binding.viewPager.pageMargin = 0
+        binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
                 when (state) {
                     ViewPager.SCROLL_STATE_DRAGGING -> hidePrevNextPageTextViews()
-                    ViewPager.SCROLL_STATE_IDLE -> handlePageSelected(view_pager.currentItem)
+                    ViewPager.SCROLL_STATE_IDLE -> handlePageSelected(binding.viewPager.currentItem)
                 }
             }
 
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
             }
 
             override fun onPageSelected(position: Int) {
                 observer?.onReset()
             }
         })
-        view_pager.adapter = adapter
-        view_pager.currentItem = 1
+        binding.viewPager.adapter = adapter
+        binding.viewPager.currentItem = 1
     }
 
     private fun handlePageSelected(position: Int) {
@@ -125,19 +131,19 @@ class MainActivity : AppCompatActivity(), TimerObservable, TimerExpirationObserv
     }
 
     private fun hidePrevPageTextView() {
-        prev_page_text_view.animateHide(shortAnimationDuration)
+        binding.txtPrevPage.animateHide(shortAnimationDuration)
     }
 
     private fun hideNextPageTextView() {
-        next_page_text_view.animateHide(shortAnimationDuration)
+        binding.txtNextPage.animateHide(shortAnimationDuration)
     }
 
     private fun showPrevPageTextView() {
-        prev_page_text_view.animateShow(shortAnimationDuration)
+        binding.txtPrevPage.animateShow(shortAnimationDuration)
     }
 
     private fun showNextPagerTextView() {
-        next_page_text_view.animateShow(shortAnimationDuration)
+        binding.txtNextPage.animateShow(shortAnimationDuration)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -183,14 +189,14 @@ class MainActivity : AppCompatActivity(), TimerObservable, TimerExpirationObserv
 
     private fun start() {
         playStatus = true
-        stop_play_button.setImageResource(R.drawable.ic_pause_white_24dp)
+        binding.btnStopPlay.setImageResource(R.drawable.ic_pause_white_24dp)
 
         observer?.onTimePlay()
     }
 
     private fun stop() {
         playStatus = false
-        stop_play_button.setImageResource(R.drawable.ic_play_arrow_white_44dp)
+        binding.btnStopPlay.setImageResource(R.drawable.ic_play_arrow_white_44dp)
 
         observer?.onTimePause()
     }

@@ -3,8 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/font/timer.xml" value="0.45045965270684374" />
+        <entry key="app/src/main/res/layout-v26/activity_main.xml" value="0.43854166666666666" />
+        <entry key="app/src/main/res/layout-v26/fragment_timer_14.xml" value="0.43854166666666666" />
+        <entry key="app/src/main/res/layout-v26/fragment_timer_24.xml" value="0.43854166666666666" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.43854166666666666" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.43003064351378956" />
         <entry key="app/src/main/res/layout/fragment_timer_14.xml" value="0.43854166666666666" />
+        <entry key="app/src/main/res/layout/fragment_timer_24.xml" value="0.43854166666666666" />
       </map>
     </option>
   </component>

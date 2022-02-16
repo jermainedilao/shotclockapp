@@ -2,8 +2,6 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
-apply plugin: 'kotlin-android-extensions'
-
 apply plugin: 'com.google.gms.google-services'
 
 apply plugin: 'com.google.firebase.crashlytics'
@@ -14,6 +12,10 @@ def keyStoreProperties = new Properties()
 keyStoreProperties.load(new FileInputStream(keyStorePropertiesFile))
 
 android {
+    buildFeatures {
+        viewBinding true
+    }
+
     signingConfigs {
         config {
             keyAlias keyStoreProperties['KEY_ALIAS']

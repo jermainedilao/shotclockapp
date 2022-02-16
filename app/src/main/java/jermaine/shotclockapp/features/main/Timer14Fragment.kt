@@ -13,13 +13,11 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import jermaine.shotclockapp.R
+import jermaine.shotclockapp.databinding.FragmentTimer14Binding
 import jermaine.shotclockapp.features.main.listeners.observables.TimerExpirationObserver
 import jermaine.shotclockapp.features.main.listeners.observables.TimerObservable
 import jermaine.shotclockapp.features.main.listeners.observables.TimerObserver
-import kotlinx.android.synthetic.main.fragment_timer_14.*
 import java.util.concurrent.TimeUnit
-
 
 class Timer14Fragment : Fragment(), TimerObserver {
     companion object {
@@ -29,6 +27,8 @@ class Timer14Fragment : Fragment(), TimerObserver {
         fun newInstance(): Timer14Fragment = Timer14Fragment()
     }
 
+    private lateinit var binding: FragmentTimer14Binding
+
     private var initialValue: Long = 14
     private var myTimerObservable: TimerObservable? = null
     private var myTimerExpirationObserver: TimerExpirationObserver? = null
@@ -37,8 +37,13 @@ class Timer14Fragment : Fragment(), TimerObserver {
 
     private var hasResumed = false
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savredInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_timer_14, null)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savredInstanceState: Bundle?
+    ): View {
+        binding = FragmentTimer14Binding.inflate(inflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,11 +51,11 @@ class Timer14Fragment : Fragment(), TimerObserver {
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             val typeface = Typeface.createFromAsset(requireContext().assets, "fonts/dsdigi.TTF")
-            timer_textView.typeface = typeface
-            timer_background_textView.typeface = typeface
+            binding.txtTimer.typeface = typeface
+            binding.txtTimerBackground.typeface = typeface
         }
 
-        timer_textView.visibility = View.VISIBLE
+        binding.txtTimer.visibility = View.VISIBLE
 
         compositeDisposable = CompositeDisposable()
     }
@@ -83,7 +88,7 @@ class Timer14Fragment : Fragment(), TimerObserver {
         if (isVisibleToUser) {
             myTimerObservable?.setObserver(this)
         } else {
-            onTimeStop()
+            onTimeStop(::binding.isInitialized)
         }
     }
 
@@ -111,7 +116,7 @@ class Timer14Fragment : Fragment(), TimerObserver {
             .subscribe(
                 {
                     Log.d(TAG, "onTimePlay: $it")
-                    timer_textView.text = it.toString()
+                    binding.txtTimer.text = it.toString()
                 },
                 {
                     Log.e(TAG, "onTimePlay: onError", it)
@@ -124,10 +129,10 @@ class Timer14Fragment : Fragment(), TimerObserver {
             .apply { compositeDisposable?.add(this) }
     }
 
-    private fun onTimeStop() {
+    private fun onTimeStop(shouldUpdateTextView: Boolean) {
         initialValue = 14
         compositeDisposable?.clear()
-        updateTimerTextViewText()
+        if (shouldUpdateTextView) updateTimerTextViewText()
     }
 
     override fun onTimePause() {
@@ -157,6 +162,6 @@ class Timer14Fragment : Fragment(), TimerObserver {
     }
 
     private fun updateTimerTextViewText() {
-        timer_textView?.text = initialValue.toString()
+        binding.txtTimer.text = initialValue.toString()
     }
 }

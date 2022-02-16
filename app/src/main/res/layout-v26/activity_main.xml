@@ -7,14 +7,14 @@
     tools:context="jermaine.shotclockapp.features.main.MainActivity">
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipChildren="false"
         android:clipToPadding="false" />
 
     <TextView
-        android:id="@+id/next_page_text_view"
+        android:id="@+id/txtNextPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -32,7 +32,7 @@
         app:layout_constraintVertical_bias="0.35000002" />
 
     <TextView
-        android:id="@+id/prev_page_text_view"
+        android:id="@+id/txtPrevPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -50,20 +50,20 @@
         app:layout_constraintVertical_bias="0.35000002" />
 
     <Button
-        android:id="@+id/button_minus_1"
+        android:id="@+id/btnMinus1"
         style="@style/CircleButton"
         android:layout_width="51dp"
         android:layout_height="51dp"
         android:onClick="onMinus1Click"
         android:text="@string/minus_one"
-        app:layout_constraintBottom_toBottomOf="@+id/stop_play_button"
-        app:layout_constraintEnd_toStartOf="@+id/stop_play_button"
+        app:layout_constraintBottom_toBottomOf="@+id/btnStopPlay"
+        app:layout_constraintEnd_toStartOf="@+id/btnStopPlay"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/stop_play_button" />
+        app:layout_constraintTop_toTopOf="@+id/btnStopPlay" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/stop_play_button"
+        android:id="@+id/btnStopPlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -73,37 +73,38 @@
         android:src="@drawable/ic_play_arrow_white_44dp"
         app:fabCustomSize="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_plus_1"
+        app:layout_constraintEnd_toStartOf="@+id/btnPlus1"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button_minus_1"
+        app:layout_constraintStart_toEndOf="@+id/btnMinus1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.95"
-        app:maxImageSize="44dp" />
+        app:maxImageSize="44dp"
+        tools:ignore="ContentDescription" />
 
     <Button
-        android:id="@+id/button_plus_1"
+        android:id="@+id/btnPlus1"
         style="@style/CircleButton"
         android:layout_width="51dp"
         android:layout_height="51dp"
         android:onClick="onPlus1Click"
         android:text="@string/plus_one"
-        app:layout_constraintBottom_toBottomOf="@+id/stop_play_button"
+        app:layout_constraintBottom_toBottomOf="@+id/btnStopPlay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/stop_play_button"
-        app:layout_constraintTop_toTopOf="@+id/stop_play_button" />
+        app:layout_constraintStart_toEndOf="@+id/btnStopPlay"
+        app:layout_constraintTop_toTopOf="@+id/btnStopPlay" />
 
     <ImageButton
-        android:id="@+id/button_reset"
+        android:id="@+id/btnReset"
         style="@style/CircleButtonLightPale"
         android:layout_width="51dp"
         android:layout_height="51dp"
         android:layout_marginBottom="40dp"
         android:onClick="onResetClick"
         android:src="@drawable/circle_button_pale_src_selector"
-        app:layout_constraintBottom_toTopOf="@+id/stop_play_button"
-        app:layout_constraintEnd_toEndOf="@+id/stop_play_button"
-        app:layout_constraintStart_toStartOf="@+id/stop_play_button"
+        app:layout_constraintBottom_toTopOf="@+id/btnStopPlay"
+        app:layout_constraintEnd_toEndOf="@+id/btnStopPlay"
+        app:layout_constraintStart_toStartOf="@+id/btnStopPlay"
         tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

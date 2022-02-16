@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/timer_textView"
+        android:id="@+id/txtTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/timer"
@@ -20,7 +20,7 @@
         android:text="@string/fourteen" />
 
     <TextView
-        android:id="@+id/timer_background_textView"
+        android:id="@+id/txtTimerBackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/timer"
