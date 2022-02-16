@@ -1,4 +1,4 @@
-package jermaine.shotclockapp.view.listener.observables
+package jermaine.shotclockapp.features.main.listeners.observables
 
 
 interface TimerObserver {

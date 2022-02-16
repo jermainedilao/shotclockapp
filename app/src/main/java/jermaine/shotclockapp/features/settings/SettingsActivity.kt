@@ -1,4 +1,4 @@
-package jermaine.shotclockapp.view.activity
+package jermaine.shotclockapp.features.settings
 
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +11,7 @@ import jermaine.shotclockapp.R
 import jermaine.shotclockapp.extension.getThemeType
 import jermaine.shotclockapp.extension.startMainActivityClrTsk
 import jermaine.shotclockapp.extension.storeThemeType
+import jermaine.shotclockapp.features.main.MainActivity
 
 
 class SettingsActivity : AppCompatActivity() {

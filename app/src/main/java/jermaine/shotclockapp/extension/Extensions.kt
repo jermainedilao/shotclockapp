@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.view.View
-import jermaine.shotclockapp.view.activity.MainActivity
-import jermaine.shotclockapp.view.activity.SettingsActivity
-import jermaine.shotclockapp.view.listener.VisibilityAnimatorListener
+import jermaine.shotclockapp.features.main.MainActivity
+import jermaine.shotclockapp.features.settings.SettingsActivity
+import jermaine.shotclockapp.features.main.listeners.VisibilityAnimatorListener
 
 fun View.animateHide(duration: Long) {
     animate().alpha(0f)

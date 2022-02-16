@@ -1,4 +1,4 @@
-package jermaine.shotclockapp.view.fragment
+package jermaine.shotclockapp.features.main
 
 import android.content.Context
 import android.graphics.Typeface
@@ -14,9 +14,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import jermaine.shotclockapp.R
-import jermaine.shotclockapp.view.listener.observables.TimerExpirationObserver
-import jermaine.shotclockapp.view.listener.observables.TimerObservable
-import jermaine.shotclockapp.view.listener.observables.TimerObserver
+import jermaine.shotclockapp.features.main.listeners.observables.TimerExpirationObserver
+import jermaine.shotclockapp.features.main.listeners.observables.TimerObservable
+import jermaine.shotclockapp.features.main.listeners.observables.TimerObserver
 import kotlinx.android.synthetic.main.fragment_timer_24.*
 import java.util.concurrent.TimeUnit
 
@@ -38,7 +38,11 @@ class Timer24Fragment : Fragment(), TimerObserver {
 
     private var hasResumed: Boolean = false
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_timer_24, null)
     }
 
@@ -95,7 +99,7 @@ class Timer24Fragment : Fragment(), TimerObserver {
 
         timerObservable = Observable.interval(1, 1, TimeUnit.SECONDS)
             .concatMap {
-                Log.d(Timer24Fragment.TAG, "onTimePlay: ${initialValue - 1}")
+                Log.d(TAG, "onTimePlay: ${initialValue - 1}")
                 Observable.just(initialValue - 1)
             }
             .takeWhile {

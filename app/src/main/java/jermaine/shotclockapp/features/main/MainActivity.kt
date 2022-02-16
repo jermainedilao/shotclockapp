@@ -1,4 +1,4 @@
-package jermaine.shotclockapp.view.activity
+package jermaine.shotclockapp.features.main
 
 import android.graphics.Typeface
 import android.os.Build
@@ -14,12 +14,10 @@ import jermaine.shotclockapp.extension.animateHide
 import jermaine.shotclockapp.extension.animateShow
 import jermaine.shotclockapp.extension.getThemeType
 import jermaine.shotclockapp.extension.startSettingsActivity
-import jermaine.shotclockapp.view.adapter.TimerPagerAdapter
-import jermaine.shotclockapp.view.fragment.Timer14Fragment
-import jermaine.shotclockapp.view.fragment.Timer24Fragment
-import jermaine.shotclockapp.view.listener.observables.TimerExpirationObserver
-import jermaine.shotclockapp.view.listener.observables.TimerObservable
-import jermaine.shotclockapp.view.listener.observables.TimerObserver
+import jermaine.shotclockapp.features.main.adapter.TimerPagerAdapter
+import jermaine.shotclockapp.features.main.listeners.observables.TimerExpirationObserver
+import jermaine.shotclockapp.features.main.listeners.observables.TimerObservable
+import jermaine.shotclockapp.features.main.listeners.observables.TimerObserver
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), TimerObservable, TimerExpirationObserver {

@@ -1,4 +1,4 @@
-package jermaine.shotclockapp.view.listener
+package jermaine.shotclockapp.features.main.listeners
 
 import android.animation.Animator
 import android.view.View
