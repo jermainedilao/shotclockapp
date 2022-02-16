@@ -22,12 +22,12 @@ android {
             storePassword keyStoreProperties['KEYSTORE_PASSWORD']
         }
     }
-    compileSdkVersion 30
+    compileSdkVersion 31
     defaultConfig {
         applicationId "jermaine.shotclockapp"
         minSdkVersion 23
-        targetSdkVersion 30
-        versionCode 4
+        targetSdkVersion 31
+        versionCode 5
         versionName "1.0.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
