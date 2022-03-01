@@ -8,7 +8,7 @@ Android Studio 3.0 or newer.
 ##
 ### Built with
 * [Kotlin](https://kotlinlang.org/) - App is purely written in kotlin.
-* [RxJava 2](https://github.com/ReactiveX/RxJava)
+* [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)
 
 ### Inspiration
 I found myself with nothing to do on a Saturday morning. Since me and my friends play basketball quite often and we usually just use shot clock apps that are already available in play store. So, I thought, "why not create one of my own?". That's when I decided to create this app.
@@ -18,8 +18,8 @@ I found myself with nothing to do on a Saturday morning. Since me and my friends
 
 ### TODO
 1. Update tech stack of the app
-    * Coroutines
-    * Update Architecture (ViewModels, Package by Feature)
+    * Coroutines - Done
+    * Update Architecture (ViewModels, Package by Feature) - Done
     * Jetpack Compose
 2. Add unit tests
 3. Add ktlint pre-commit hook

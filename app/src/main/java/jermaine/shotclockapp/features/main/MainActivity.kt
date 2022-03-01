@@ -58,17 +58,13 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
                 launch {
-                    viewModel.events.collect(::handleEvents)
-                }
-
-                launch {
-                    viewModel.playState.collect(::handlePlayState)
+                    viewModel.state.collect(::handleState)
                 }
             }
         }
     }
 
-    private fun handlePlayState(play: Boolean) {
+    private fun handleState(state: MainState): Unit = with(state) {
         binding.btnStopPlay.setImageResource(
             if (play) {
                 R.drawable.ic_pause_white_24dp
@@ -76,12 +72,6 @@ class MainActivity : AppCompatActivity() {
                 R.drawable.ic_play_arrow_white_44dp
             }
         )
-    }
-
-    private fun handleEvents(event: MainEvent) {
-        when (event) {
-            MainEvent.NavigateToSettings -> TODO()
-        }
     }
 
     private fun setupViews() {

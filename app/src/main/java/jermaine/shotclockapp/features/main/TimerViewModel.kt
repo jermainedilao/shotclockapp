@@ -1,11 +1,6 @@
 package jermaine.shotclockapp.features.main
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
-import jermaine.shotclockapp.utils.INITIAL_TIME_14
-import jermaine.shotclockapp.utils.INITIAL_TIME_24
-import jermaine.shotclockapp.utils.PAGE_POSITION_TIMER_14
-import jermaine.shotclockapp.utils.PAGE_POSITION_TIMER_24
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -22,7 +17,6 @@ class TimerViewModel : ViewModel() {
     private var maxTime = 0
 
     fun init(initialTime: Int) {
-        Log.d(TAG, "init: $initialTime")
         currentTime = initialTime
         maxTime = initialTime
         _state.value = _state.value.copy(
@@ -31,7 +25,6 @@ class TimerViewModel : ViewModel() {
     }
 
     fun resetTimer() {
-        Log.d(TAG, "resetTimer: $maxTime")
         currentTime = maxTime
         _state.value = _state.value.copy(
             currentTime = currentTime
@@ -59,15 +52,10 @@ class TimerViewModel : ViewModel() {
     }
 
     fun onTick(time: Int) {
-        Log.d(TAG, "onTick: $time")
         currentTime = time
         _state.value = _state.value.copy(
             currentTime = currentTime
         )
-    }
-
-    fun startTimer() {
-
     }
 
     companion object {

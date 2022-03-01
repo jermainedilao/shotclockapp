@@ -4,36 +4,46 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.*
 
 class MainViewModel : ViewModel() {
-    private val _events by lazy {
-        MutableSharedFlow<MainEvent>(replay = 1)
+    private val _state by lazy {
+        MutableStateFlow(MainState.initialState())
     }
 
-    val events: SharedFlow<MainEvent> = _events.asSharedFlow()
-
-    private val _playState by lazy {
-        MutableStateFlow(false)
-    }
-
-    val playState: StateFlow<Boolean> = _playState.asStateFlow()
+    val state: StateFlow<MainState> = _state.asStateFlow()
 
     fun stop() {
-        _playState.value = false
+        _state.value = _state.value.copy(
+            play = false
+        )
     }
 
     fun onPlayClick() {
-        _playState.value = !_playState.value
+        _state.value = _state.value.copy(
+            play = !_state.value.play
+        )
     }
 
     fun reset() {
-        _events.tryEmit(MainEvent.TimerEvent.Reset)
+        _state.value = _state.value.copy(
+            events = _state.value.events + MainEvents.TimerEvent.Reset
+        )
     }
 
     fun increaseTime() {
-        _events.tryEmit(MainEvent.TimerEvent.IncreaseTime)
+        _state.value = _state.value.copy(
+            events = _state.value.events + MainEvents.TimerEvent.IncreaseTime
+        )
     }
 
     fun decreaseTime() {
-        _events.tryEmit(MainEvent.TimerEvent.DecreaseTime)
+        _state.value = _state.value.copy(
+            events = _state.value.events + MainEvents.TimerEvent.DecreaseTime
+        )
+    }
+
+    fun eventConsumed(eventId: Long) {
+        _state.value = _state.value.copy(
+            events = _state.value.events.filterNot { it.eventId == eventId }
+        )
     }
 
     companion object {

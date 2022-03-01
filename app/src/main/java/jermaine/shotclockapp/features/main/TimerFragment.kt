@@ -3,7 +3,6 @@ package jermaine.shotclockapp.features.main
 import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -86,10 +85,7 @@ class TimerFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 launch {
-                    mainViewModel.events.collect(::handleEvents)
-                }
-                launch {
-                    mainViewModel.playState.collect(::handlePlayState)
+                    mainViewModel.state.collect(::handleMainState)
                 }
                 launch {
                     viewModel.state.collect(::handleState)
@@ -98,35 +94,34 @@ class TimerFragment : Fragment() {
         }
     }
 
-    private fun handlePlayState(play: Boolean) {
+    private fun handleState(state: TimerState): Unit = with(state) {
+        this@TimerFragment.currentTime = currentTime
+        binding.txtTimer.text = currentTime.toString()
+    }
+
+    private fun handleMainState(event: MainState): Unit = with(event) {
         if (play) {
             startTimer()
         } else {
             timer?.cancel()
         }
-    }
 
-    private fun handleState(state: TimerState): Unit = with(state) {
-        Log.d(TAG, "handleState: $currentTime")
-        this@TimerFragment.currentTime = currentTime
-        binding.txtTimer.text = currentTime.toString()
-    }
-
-    private fun handleEvents(event: MainEvent) {
-        when (event) {
-            MainEvent.TimerEvent.DecreaseTime -> {
-                viewModel.decreaseTime()
+        (events.firstOrNull() as? MainEvents.TimerEvent)?.let {
+            when (it) {
+                MainEvents.TimerEvent.DecreaseTime -> {
+                    viewModel.decreaseTime()
+                }
+                MainEvents.TimerEvent.IncreaseTime -> {
+                    viewModel.increaseTime()
+                }
+                MainEvents.TimerEvent.Reset -> {
+                    viewModel.resetTimer()
+                }
             }
-            MainEvent.TimerEvent.IncreaseTime -> {
-                viewModel.increaseTime()
-            }
-            MainEvent.TimerEvent.Reset -> {
-                viewModel.resetTimer()
-            }
+            mainViewModel.eventConsumed(it.eventId)
         }
     }
 
-    // TODO: FIX TIMER GETTING -1 VALUE WHEN SWITCHING TO DIFFERENT PAGES
     private fun startTimer() {
         timer?.cancel()
         timer = viewLifecycleOwner.lifecycleScope.launch {
@@ -138,21 +133,16 @@ class TimerFragment : Fragment() {
                 .onEach {
                     if (it <= 0) {
                         timer?.cancel(TimerCompleted)
-                    } else {
-                        currentTime = it
-                        viewModel.onTick(currentTime)
                     }
                 }
                 .onCompletion {
                     if (it is TimerCompleted) {
-                        Log.d(TAG, "startTimer: timercompleted")
                         viewModel.resetTimer()
                         mainViewModel.stop()
                     }
                 }
                 .collect {
-                    Log.d(TAG, "startTimer: collect $it")
-//                    binding.txtTimer.text = it.toString()
+                    viewModel.onTick(it)
                 }
         }
     }
