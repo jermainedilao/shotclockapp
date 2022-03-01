@@ -2,24 +2,30 @@ package jermaine.shotclockapp.features.main.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
-import jermaine.shotclockapp.features.main.Timer14Fragment
-import jermaine.shotclockapp.features.main.Timer24Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import jermaine.shotclockapp.features.main.TimerFragment
+import jermaine.shotclockapp.utils.INITIAL_TIME_14
+import jermaine.shotclockapp.utils.INITIAL_TIME_24
+import jermaine.shotclockapp.utils.PAGE_POSITION_TIMER_14
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 
-
+@ExperimentalCoroutinesApi
+@FlowPreview
 class TimerPagerAdapter(
     fragmentManager: FragmentManager,
-    private val list: List<Int>
-) : FragmentStatePagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    lifecycle: Lifecycle
+) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
-    override fun getItem(position: Int): Fragment =
-        when (list[position]) {
-            Timer24Fragment.TIMER_24 -> Timer24Fragment.newInstance()
-            Timer14Fragment.TIMER_14 -> Timer14Fragment.newInstance()
-            else -> Timer24Fragment.newInstance()
+    override fun getItemCount(): Int = 2
+
+    override fun createFragment(position: Int): Fragment {
+        val initialTime = if (position == PAGE_POSITION_TIMER_14) {
+            INITIAL_TIME_14
+        } else {
+            INITIAL_TIME_24
         }
-
-    override fun getCount(): Int = list.size
-
-    fun getItems() = list
+        return TimerFragment.newInstance(initialTime)
+    }
 }
