@@ -15,8 +15,6 @@ data class MainState(
 }
 
 sealed class MainEvents(val eventId: Long = UUID.randomUUID().mostSignificantBits) {
-    object NavigateToSettings : MainEvents()
-
     sealed class TimerEvent : MainEvents() {
         object Reset : TimerEvent()
 
