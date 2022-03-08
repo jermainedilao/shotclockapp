@@ -1,4 +1,4 @@
-package jermaine.shotclockapp.features.main
+package jermaine.shotclockapp.features.mainold
 
 import android.graphics.Typeface
 import android.os.Build
@@ -15,7 +15,7 @@ import jermaine.shotclockapp.extension.animateHide
 import jermaine.shotclockapp.extension.animateShow
 import jermaine.shotclockapp.extension.getThemeType
 import jermaine.shotclockapp.extension.startSettingsActivity
-import jermaine.shotclockapp.features.main.adapter.TimerPagerAdapter
+import jermaine.shotclockapp.features.mainold.adapter.TimerPagerAdapter
 import jermaine.shotclockapp.utils.PAGE_POSITION_TIMER_14
 import jermaine.shotclockapp.utils.PAGE_POSITION_TIMER_24
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -168,7 +168,7 @@ class MainActivity : AppCompatActivity() {
         binding.txtNextPage.animateShow(shortAnimationDuration)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.settings_menu, menu)
         return true
     }

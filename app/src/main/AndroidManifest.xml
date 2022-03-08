@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeLight">
         <activity
-            android:name=".features.main.MainActivity"
+            android:name=".features.main.MainActivityCompose"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>

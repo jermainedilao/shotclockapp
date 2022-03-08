@@ -11,7 +11,7 @@ import jermaine.shotclockapp.R
 import jermaine.shotclockapp.extension.getThemeType
 import jermaine.shotclockapp.extension.startMainActivityClrTsk
 import jermaine.shotclockapp.extension.storeThemeType
-import jermaine.shotclockapp.features.main.MainActivity
+import jermaine.shotclockapp.features.mainold.MainActivity
 
 
 class SettingsActivity : AppCompatActivity() {

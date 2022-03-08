@@ -7,3 +7,8 @@ const val INITIAL_TIME_14 = 14
 const val INITIAL_TIME_24 = 24
 
 const val TIMER_INTERVAL_IN_MILLIS = 1000L
+
+// region Constants
+const val NAVIGATION_HOME = "home"
+const val NAVIGATION_SETTINGS = "settings"
+// endregion

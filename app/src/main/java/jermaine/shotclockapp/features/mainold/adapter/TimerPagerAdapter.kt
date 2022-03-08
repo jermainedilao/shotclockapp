@@ -1,10 +1,10 @@
-package jermaine.shotclockapp.features.main.adapter
+package jermaine.shotclockapp.features.mainold.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import jermaine.shotclockapp.features.main.TimerFragment
+import jermaine.shotclockapp.features.mainold.TimerFragment
 import jermaine.shotclockapp.utils.INITIAL_TIME_14
 import jermaine.shotclockapp.utils.INITIAL_TIME_24
 import jermaine.shotclockapp.utils.PAGE_POSITION_TIMER_14

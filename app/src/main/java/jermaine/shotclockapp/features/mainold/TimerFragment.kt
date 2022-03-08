@@ -1,4 +1,4 @@
-package jermaine.shotclockapp.features.main
+package jermaine.shotclockapp.features.mainold
 
 import android.graphics.Typeface
 import android.os.Build
@@ -13,7 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import jermaine.shotclockapp.databinding.FragmentTimerBinding
 import jermaine.shotclockapp.extension.argument
-import jermaine.shotclockapp.features.main.cancellation.TimerCompleted
+import jermaine.shotclockapp.features.mainold.cancellation.TimerCompleted
 import jermaine.shotclockapp.utils.tickerFlow
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*

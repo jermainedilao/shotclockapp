@@ -3,8 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/compose-model-1646271924058.xml" value="0.625" />
+        <entry key="../../../../../layout/compose-model-1646273820166.xml" value="0.375" />
+        <entry key="../../../../../layout/compose-model-1646626299372.xml" value="0.36447811447811446" />
+        <entry key="../../../../../layout/compose-model-1646626447765.xml" value="0.25" />
+        <entry key="../../../../../layout/compose-model-1646707664489.xml" value="0.25" />
+        <entry key="../../../../../layout/compose-model-1646719126174.xml" value="0.375" />
+        <entry key="../../../../../layout/compose-model-1646719568334.xml" value="0.25" />
+        <entry key="../../../../../layout/compose-model-1646720566475.xml" value="0.29335016835016836" />
+        <entry key="../../../../../layout/compose-model-1646721176423.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/circle_button_pale_default.xml" value="0.18" />
+        <entry key="app/src/main/res/drawable/circle_button_pale_pressed.xml" value="0.18" />
+        <entry key="app/src/main/res/drawable/circle_button_pale_selector.xml" value="0.18" />
+        <entry key="app/src/main/res/drawable/circle_button_pale_src_selector.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/ic_pause_white_24dp.xml" value="0.119" />
         <entry key="app/src/main/res/drawable/ic_play_arrow_white_44dp.xml" value="0.119" />
+        <entry key="app/src/main/res/drawable/ic_replay_default_24dp.xml" value="0.18" />
+        <entry key="app/src/main/res/drawable/ic_replay_pressed_24dp.xml" value="0.179" />
         <entry key="app/src/main/res/font/timer.xml" value="0.45045965270684374" />
         <entry key="app/src/main/res/layout-v26/activity_main.xml" value="0.43854166666666666" />
         <entry key="app/src/main/res/layout-v26/fragment_timer.xml" value="0.21041666666666667" />
