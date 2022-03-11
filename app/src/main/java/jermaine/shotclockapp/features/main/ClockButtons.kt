@@ -26,6 +26,7 @@ typealias OnResetTimeListener = () -> Unit
 @Composable
 fun ClockButtons(
     modifier: Modifier = Modifier,
+    play: Boolean,
     onPlay: OnPlayListener,
     onIncreaseTime: OnIncreaseTimeListener,
     onDecreaseTime: OnDecreaseTimeListener,
@@ -85,7 +86,11 @@ fun ClockButtons(
                 elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 8.dp)
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_play_arrow_white_44dp),
+                    painter = if (play) {
+                        painterResource(id = R.drawable.ic_pause_white_24dp)
+                    } else {
+                        painterResource(id = R.drawable.ic_play_arrow_white_44dp)
+                    },
                     contentDescription = "Play",
                     tint = Color.White
                 )
@@ -116,7 +121,8 @@ fun ClockButtons(
 private fun ClockButtonsPreview() {
     ShotClockTheme {
         ClockButtons(
-            Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize(),
+            play = false,
             onPlay = {},
             onIncreaseTime = {},
             onDecreaseTime = {},

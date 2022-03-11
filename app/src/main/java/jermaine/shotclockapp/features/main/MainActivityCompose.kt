@@ -14,7 +14,11 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import jermaine.shotclockapp.theme.Gainsboro
 import jermaine.shotclockapp.theme.ShotClockTheme
 import jermaine.shotclockapp.utils.NAVIGATION_HOME
+import kotlinx.coroutines.FlowPreview
+import kotlin.time.ExperimentalTime
 
+@FlowPreview
+@ExperimentalTime
 @ExperimentalPagerApi
 class MainActivityCompose : ComponentActivity() {
 
@@ -33,6 +37,8 @@ class MainActivityCompose : ComponentActivity() {
     }
 }
 
+@FlowPreview
+@ExperimentalTime
 @ExperimentalPagerApi
 @Composable
 fun ShotClockApp() {

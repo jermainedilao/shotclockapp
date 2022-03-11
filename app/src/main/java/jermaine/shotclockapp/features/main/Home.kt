@@ -7,14 +7,18 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.ExperimentalPagerApi
 import jermaine.shotclockapp.theme.ShotClockTheme
+import kotlinx.coroutines.FlowPreview
+import kotlin.time.ExperimentalTime
 
+@FlowPreview
+@ExperimentalTime
 @ExperimentalPagerApi
 @Composable
 fun Home() {
@@ -26,31 +30,12 @@ fun Home() {
             ) {}
         }
     ) {
-        Column(modifier = Modifier.fillMaxSize()) {
-            ClockComponent(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight(.7f)
-            )
-            ClockButtons(
-                modifier = Modifier.fillMaxSize(),
-                onPlay = {
-                    Log.d("Home", "Home: onPlay")
-                },
-                onIncreaseTime = {
-                    Log.d("Home", "Home: onIncreaseTime")
-                },
-                onDecreaseTime = {
-                    Log.d("Home", "Home: onDecreaseTime")
-                },
-                onResetTime = {
-                    Log.d("Home", "Home: onResetTime")
-                }
-            )
-        }
+        ClockComponent(Modifier.fillMaxSize())
     }
 }
 
+@FlowPreview
+@ExperimentalTime
 @ExperimentalPagerApi
 @Preview(showBackground = true)
 @Composable
