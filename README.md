@@ -20,7 +20,9 @@ I found myself with nothing to do on a Saturday morning. Since me and my friends
 1. Update tech stack of the app
     * Coroutines - Done
     * Update Architecture (ViewModels, Package by Feature) - Done
-    * Jetpack Compose
+    * Jetpack Compose 
+      * Main - Done
+      * Settings - WIP
 2. Add unit tests
 3. Add ktlint pre-commit hook
 4. Setup CI/CD on Bitrise
