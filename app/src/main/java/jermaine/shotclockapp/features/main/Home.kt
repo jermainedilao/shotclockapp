@@ -1,11 +1,10 @@
 package jermaine.shotclockapp.features.main
 
-import androidx.compose.foundation.isSystemInDarkTheme
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
@@ -14,8 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.ExperimentalPagerApi
-import jermaine.shotclockapp.theme.DarkColors
-import jermaine.shotclockapp.theme.LightColors
+import jermaine.shotclockapp.theme.ShotClockTheme
 
 @ExperimentalPagerApi
 @Composable
@@ -34,7 +32,21 @@ fun Home() {
                     .fillMaxWidth()
                     .fillMaxHeight(.7f)
             )
-            ClockButtons(modifier = Modifier.fillMaxSize())
+            ClockButtons(
+                modifier = Modifier.fillMaxSize(),
+                onPlay = {
+                    Log.d("Home", "Home: onPlay")
+                },
+                onIncreaseTime = {
+                    Log.d("Home", "Home: onIncreaseTime")
+                },
+                onDecreaseTime = {
+                    Log.d("Home", "Home: onDecreaseTime")
+                },
+                onResetTime = {
+                    Log.d("Home", "Home: onResetTime")
+                }
+            )
         }
     }
 }
@@ -43,13 +55,7 @@ fun Home() {
 @Preview(showBackground = true)
 @Composable
 private fun HomePreview() {
-    MaterialTheme(
-        colors = if (isSystemInDarkTheme()) {
-            DarkColors
-        } else {
-            LightColors
-        }
-    ) {
+    ShotClockTheme {
         Home()
     }
 }

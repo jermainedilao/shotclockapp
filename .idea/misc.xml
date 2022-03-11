@@ -12,6 +12,14 @@
         <entry key="../../../../../layout/compose-model-1646719568334.xml" value="0.25" />
         <entry key="../../../../../layout/compose-model-1646720566475.xml" value="0.29335016835016836" />
         <entry key="../../../../../layout/compose-model-1646721176423.xml" value="0.25" />
+        <entry key="../../../../../layout/compose-model-1646796622409.xml" value="0.25" />
+        <entry key="../../../../../layout/compose-model-1646796809230.xml" value="0.55" />
+        <entry key="../../../../../layout/compose-model-1646796866001.xml" value="0.25" />
+        <entry key="../../../../../layout/compose-model-1646796877798.xml" value="0.3097530347425701" />
+        <entry key="../../../../../layout/compose-model-1646797221720.xml" value="0.32942653830054414" />
+        <entry key="../../../../../layout/compose-model-1646883737494.xml" value="0.3281707827542905" />
+        <entry key="../../../../../layout/compose-model-1646977407294.xml" value="0.5475094181665969" />
+        <entry key="../../../../../layout/compose-model-1646977533541.xml" value="0.5462536626203432" />
         <entry key="app/src/main/res/drawable/circle_button_pale_default.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/circle_button_pale_pressed.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/circle_button_pale_selector.xml" value="0.18" />
@@ -25,7 +33,7 @@
         <entry key="app/src/main/res/layout-v26/fragment_timer.xml" value="0.21041666666666667" />
         <entry key="app/src/main/res/layout-v26/fragment_timer_14.xml" value="0.43854166666666666" />
         <entry key="app/src/main/res/layout-v26/fragment_timer_24.xml" value="0.43854166666666666" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.43854166666666666" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.43003064351378956" />
         <entry key="app/src/main/res/layout/fragment_timer.xml" value="0.42083333333333334" />
         <entry key="app/src/main/res/layout/fragment_timer_14.xml" value="0.43854166666666666" />
