@@ -1,19 +1,19 @@
 package jermaine.shotclockapp.features.main
 
-import android.util.Log
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.Scaffold
-import androidx.compose.material.TopAppBar
-import androidx.compose.runtime.*
+import androidx.compose.material.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
+import jermaine.shotclockapp.R
 import jermaine.shotclockapp.theme.ShotClockTheme
+import jermaine.shotclockapp.utils.NAVIGATION_SETTINGS
 import kotlinx.coroutines.FlowPreview
 import kotlin.time.ExperimentalTime
 
@@ -21,13 +21,26 @@ import kotlin.time.ExperimentalTime
 @ExperimentalTime
 @ExperimentalPagerApi
 @Composable
-fun Home() {
+fun Home(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
+                title = { },
                 backgroundColor = Color.Transparent,
-                elevation = 0.dp
-            ) {}
+                elevation = 0.dp,
+                actions = {
+                    IconButton(
+                        onClick = {
+                            navController.navigate(NAVIGATION_SETTINGS)
+                        }
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_settings_default_24dp),
+                            contentDescription = "Settings"
+                        )
+                    }
+                }
+            )
         }
     ) {
         ClockComponent(Modifier.fillMaxSize())
@@ -41,6 +54,6 @@ fun Home() {
 @Composable
 private fun HomePreview() {
     ShotClockTheme {
-        Home()
+        Home(navController = rememberNavController())
     }
 }

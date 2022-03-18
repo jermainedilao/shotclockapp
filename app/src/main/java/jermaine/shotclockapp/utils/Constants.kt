@@ -11,4 +11,6 @@ const val TIMER_INTERVAL_IN_MILLIS = 1000L
 // region Constants
 const val NAVIGATION_HOME = "home"
 const val NAVIGATION_SETTINGS = "settings"
+const val THEME_LIGHT = "theme:light"
+const val THEME_DARK = "theme:dark"
 // endregion

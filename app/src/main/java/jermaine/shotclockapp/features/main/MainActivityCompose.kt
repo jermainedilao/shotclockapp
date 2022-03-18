@@ -11,9 +11,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import jermaine.shotclockapp.features.settings.Settings
+import jermaine.shotclockapp.theme.BakaraGrey
 import jermaine.shotclockapp.theme.Gainsboro
 import jermaine.shotclockapp.theme.ShotClockTheme
 import jermaine.shotclockapp.utils.NAVIGATION_HOME
+import jermaine.shotclockapp.utils.NAVIGATION_SETTINGS
 import kotlinx.coroutines.FlowPreview
 import kotlin.time.ExperimentalTime
 
@@ -29,7 +32,8 @@ class MainActivityCompose : ComponentActivity() {
             ShotClockTheme {
                 val systemUiController = rememberSystemUiController()
                 systemUiController.setStatusBarColor(
-                    if (isSystemInDarkTheme()) Gainsboro else Color.White
+//                    if (isSystemInDarkTheme()) BakaraGrey else Color.White
+                    Color.White
                 )
                 ShotClockApp()
             }
@@ -46,7 +50,10 @@ fun ShotClockApp() {
 
     NavHost(navController = navController, startDestination = NAVIGATION_HOME) {
         composable(NAVIGATION_HOME) {
-            Home()
+            Home(navController)
+        }
+        composable(NAVIGATION_SETTINGS) {
+            Settings(navController)
         }
     }
 }

@@ -21,8 +21,18 @@
         <entry key="../../../../../layout/compose-model-1646977407294.xml" value="0.5475094181665969" />
         <entry key="../../../../../layout/compose-model-1646977533541.xml" value="0.5462536626203432" />
         <entry key="../../../../../layout/compose-model-1646983703574.xml" value="0.5236500627877773" />
-        <entry key="../../../../../layout/compose-model-1646983716875.xml" value="0.1" />
+        <entry key="../../../../../layout/compose-model-1646983716875.xml" value="0.12" />
         <entry key="../../../../../layout/compose-model-1646983718893.xml" value="0.5223943072415237" />
+        <entry key="../../../../../layout/compose-model-1646991928390.xml" value="0.5223943072415237" />
+        <entry key="../../../../../layout/compose-model-1646992577911.xml" value="0.5" />
+        <entry key="../../../../../layout/compose-model-1646994439836.xml" value="0.4361111111111111" />
+        <entry key="../../../../../layout/compose-model-1646994447495.xml" value="0.5" />
+        <entry key="../../../../../layout/compose-model-1646994875918.xml" value="0.5223943072415237" />
+        <entry key="../../../../../layout/compose-model-1646994892691.xml" value="0.5223943072415237" />
+        <entry key="../../../../../layout/compose-model-1646995738512.xml" value="0.5223943072415237" />
+        <entry key="../../../../../layout/compose-model-1647588781965.xml" value="0.555881121808288" />
+        <entry key="../../../../../layout/compose-model-1647588915305.xml" value="0.555881121808288" />
+        <entry key="../../../../../layout/compose-model-1647588918433.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/circle_button_pale_default.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/circle_button_pale_pressed.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/circle_button_pale_selector.xml" value="0.18" />
@@ -31,16 +41,19 @@
         <entry key="app/src/main/res/drawable/ic_play_arrow_white_44dp.xml" value="0.119" />
         <entry key="app/src/main/res/drawable/ic_replay_default_24dp.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/ic_replay_pressed_24dp.xml" value="0.179" />
+        <entry key="app/src/main/res/drawable/ic_settings_default_24dp.xml" value="0.494" />
+        <entry key="app/src/main/res/drawable/ic_settings_pressed_24dp.xml" value="0.494" />
         <entry key="app/src/main/res/font/timer.xml" value="0.45045965270684374" />
         <entry key="app/src/main/res/layout-v26/activity_main.xml" value="0.43854166666666666" />
         <entry key="app/src/main/res/layout-v26/fragment_timer.xml" value="0.21041666666666667" />
         <entry key="app/src/main/res/layout-v26/fragment_timer_14.xml" value="0.43854166666666666" />
         <entry key="app/src/main/res/layout-v26/fragment_timer_24.xml" value="0.43854166666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.43003064351378956" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_timer.xml" value="0.42083333333333334" />
         <entry key="app/src/main/res/layout/fragment_timer_14.xml" value="0.43854166666666666" />
         <entry key="app/src/main/res/layout/fragment_timer_24.xml" value="0.43854166666666666" />
+        <entry key="app/src/main/res/menu/popup_menu_themes.xml" value="0.6447916666666667" />
       </map>
     </option>
   </component>
