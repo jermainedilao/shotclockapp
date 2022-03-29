@@ -84,4 +84,7 @@ dependencies {
     implementation "com.google.accompanist:accompanist-pager:0.24.3-alpha"
     implementation "androidx.activity:activity-compose:1.5.0-alpha03"
     implementation "com.google.accompanist:accompanist-systemuicontroller:0.23.1"
+
+    // Preferences DataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
 }

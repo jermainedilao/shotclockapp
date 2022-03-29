@@ -3,11 +3,11 @@ package jermaine.shotclockapp.features.main
 import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -17,8 +17,7 @@ import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
 import jermaine.shotclockapp.features.mainold.cancellation.TimerCompleted
 import jermaine.shotclockapp.theme.DsDigi
-import jermaine.shotclockapp.theme.Grey
-import jermaine.shotclockapp.theme.ShotClockTheme
+import jermaine.shotclockapp.theme.LightColors
 import jermaine.shotclockapp.utils.INITIAL_TIME_14
 import jermaine.shotclockapp.utils.INITIAL_TIME_24
 import jermaine.shotclockapp.utils.tickerFlow
@@ -199,7 +198,7 @@ private fun CountdownTimer(clockState: ClockState) {
 @Preview(showBackground = true)
 @Composable
 private fun PreviewClockComponent() {
-    ShotClockTheme {
+    MaterialTheme(colors = LightColors) {
         ClockComponent(
             modifier = Modifier.fillMaxSize()
         )
@@ -240,7 +239,6 @@ private fun Clock(time: Int) {
         text = time.toString(),
         fontFamily = DsDigi,
         fontSize = 200.sp,
-        color = Color.Black
     )
 }
 
@@ -254,7 +252,7 @@ private fun ClockPage(
         text = text,
         fontFamily = DsDigi,
         fontSize = 44.sp,
-        color = Grey,
+        color = MaterialTheme.colors.primaryVariant,
         modifier = modifier
             .clickable(onClick = onClick)
     )

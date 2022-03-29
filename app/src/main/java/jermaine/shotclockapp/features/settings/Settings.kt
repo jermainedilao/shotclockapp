@@ -8,10 +8,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpOffset
@@ -20,12 +19,23 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import jermaine.shotclockapp.R
-import jermaine.shotclockapp.theme.ShotClockTheme
-import jermaine.shotclockapp.utils.THEME_DARK
-import jermaine.shotclockapp.utils.THEME_LIGHT
+import jermaine.shotclockapp.features.preferences.ShotClockPreferences
+import jermaine.shotclockapp.theme.LightColors
+import jermaine.shotclockapp.utils.ThemeType
+import kotlinx.coroutines.launch
 
 @Composable
 fun Settings(navController: NavController) {
+    MaterialTheme(colors = LightColors) {
+        SettingsContent(navController)
+    }
+}
+
+@Composable
+private fun SettingsContent(navController: NavController) {
+    var selectedTheme: ThemeType? by remember { mutableStateOf(null) }
+    val scope = rememberCoroutineScope()
+    val preferences = ShotClockPreferences(LocalContext.current)
     Scaffold(
         topBar = {
             TopAppBar(
@@ -36,6 +46,12 @@ fun Settings(navController: NavController) {
                 navigationIcon = {
                     IconButton(
                         onClick = {
+                            if (selectedTheme != null) {
+                                // TODO: Update theme
+                                scope.launch {
+                                    preferences.saveTheme(selectedTheme!!)
+                                }
+                            }
                             navController.navigateUp()
                         }
                     ) {
@@ -46,7 +62,7 @@ fun Settings(navController: NavController) {
                     }
                 }
             )
-        }
+        },
     ) {
         Column(
             modifier = Modifier
@@ -97,7 +113,7 @@ fun Settings(navController: NavController) {
                     ThemeOptionsPopup(
                         expanded = expanded,
                         onItemSelected = { theme ->
-                            // TODO: Apply theme
+                            selectedTheme = theme
                             expanded = false
                         },
                         onDismiss = {
@@ -111,9 +127,9 @@ fun Settings(navController: NavController) {
 }
 
 @Composable
-fun ThemeOptionsPopup(
+private fun ThemeOptionsPopup(
     expanded: Boolean,
-    onItemSelected: (theme: String) -> Unit,
+    onItemSelected: (theme: ThemeType) -> Unit,
     onDismiss: () -> Unit
 ) {
     DropdownMenu(
@@ -123,14 +139,14 @@ fun ThemeOptionsPopup(
     ) {
         DropdownMenuItem(
             onClick = {
-                onItemSelected(THEME_LIGHT)
+                onItemSelected(ThemeType.Light)
             }
         ) {
             Text(text = stringResource(id = R.string.light))
         }
         DropdownMenuItem(
             onClick = {
-                onItemSelected(THEME_DARK)
+                onItemSelected(ThemeType.Dark)
             }
         ) {
             Text(text = stringResource(id = R.string.dark))
@@ -141,7 +157,7 @@ fun ThemeOptionsPopup(
 @Preview
 @Composable
 private fun SettingsPreview() {
-    ShotClockTheme {
+    MaterialTheme(colors = LightColors) {
         Settings(navController = rememberNavController())
     }
 }

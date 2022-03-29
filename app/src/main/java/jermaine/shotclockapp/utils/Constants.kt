@@ -11,6 +11,11 @@ const val TIMER_INTERVAL_IN_MILLIS = 1000L
 // region Constants
 const val NAVIGATION_HOME = "home"
 const val NAVIGATION_SETTINGS = "settings"
-const val THEME_LIGHT = "theme:light"
-const val THEME_DARK = "theme:dark"
+const val SHOTCLOCKAPP_PREFERENCES = "shotclockapp-preferences"
+const val THEME_TYPE = "theme_type"
+
+enum class ThemeType {
+    Light,
+    Dark
+}
 // endregion
