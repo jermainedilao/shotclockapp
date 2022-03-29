@@ -12,6 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import jermaine.shotclockapp.R
+import jermaine.shotclockapp.theme.LightColors
 import jermaine.shotclockapp.theme.ShotClockTheme
 import jermaine.shotclockapp.utils.NAVIGATION_SETTINGS
 import kotlinx.coroutines.FlowPreview
@@ -53,7 +54,7 @@ fun Home(navController: NavController) {
 @Preview(showBackground = true)
 @Composable
 private fun HomePreview() {
-    ShotClockTheme {
+    MaterialTheme(colors = LightColors) {
         Home(navController = rememberNavController())
     }
 }

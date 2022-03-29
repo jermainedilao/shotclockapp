@@ -14,6 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import jermaine.shotclockapp.R
+import jermaine.shotclockapp.theme.LightColors
 import jermaine.shotclockapp.theme.Pink
 import jermaine.shotclockapp.theme.ShotClockTheme
 import jermaine.shotclockapp.theme.VeryLightGrey
@@ -119,7 +120,7 @@ fun ClockButtons(
 @Preview(showBackground = true)
 @Composable
 private fun ClockButtonsPreview() {
-    ShotClockTheme {
+    MaterialTheme(colors = LightColors) {
         ClockButtons(
             modifier = Modifier.fillMaxSize(),
             play = false,
