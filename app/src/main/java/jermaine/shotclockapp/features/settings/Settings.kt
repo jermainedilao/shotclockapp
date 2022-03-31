@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -46,10 +47,9 @@ private fun SettingsContent(navController: NavController) {
                 navigationIcon = {
                     IconButton(
                         onClick = {
-                            if (selectedTheme != null) {
-                                // TODO: Update theme
+                            selectedTheme?.let {
                                 scope.launch {
-                                    preferences.saveTheme(selectedTheme!!)
+                                    preferences.saveTheme(it)
                                 }
                             }
                             navController.navigateUp()
@@ -97,7 +97,7 @@ private fun SettingsContent(navController: NavController) {
                         fontWeight = FontWeight.Normal
                     )
                     Icon(
-                        painter = painterResource(id = R.drawable.ic_keyboard_arrow_right_black_24dp),
+                        imageVector = Icons.Default.KeyboardArrowRight,
                         contentDescription = "Arrow",
                         modifier = Modifier
                             .align(Alignment.CenterVertically)

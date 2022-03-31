@@ -1,6 +1,5 @@
 package jermaine.shotclockapp.features.main
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
@@ -15,11 +14,12 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
-import jermaine.shotclockapp.features.mainold.cancellation.TimerCompleted
+import jermaine.shotclockapp.utils.exceptions.TimerCompleted
 import jermaine.shotclockapp.theme.DsDigi
 import jermaine.shotclockapp.theme.LightColors
 import jermaine.shotclockapp.utils.INITIAL_TIME_14
 import jermaine.shotclockapp.utils.INITIAL_TIME_24
+import jermaine.shotclockapp.utils.PAGE_POSITION_TIMER_24
 import jermaine.shotclockapp.utils.tickerFlow
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
@@ -30,7 +30,7 @@ import kotlin.time.Duration.Companion.seconds
 import kotlin.time.ExperimentalTime
 
 @ExperimentalPagerApi
-class ClockState(
+private class ClockState(
     val pagerState: PagerState,
     val playState: MutableState<Boolean>,
     val twentyFourTimeState: MutableState<Int>,
@@ -55,7 +55,7 @@ class ClockState(
     }
 
     fun increaseTime() {
-        if (currentPage == 1) {
+        if (currentPage == PAGE_POSITION_TIMER_24) {
             if (twentyFourTime < INITIAL_TIME_24) twentyFourTimeState.value += 1
         } else {
             if (fourteenTime < INITIAL_TIME_14) fourteenTimeState.value += 1
@@ -63,7 +63,7 @@ class ClockState(
     }
 
     fun decreaseTime() {
-        if (currentPage == 1) {
+        if (currentPage == PAGE_POSITION_TIMER_24) {
             if (twentyFourTime > 0) twentyFourTimeState.value -= 1
         } else {
             if (fourteenTime > 0) fourteenTimeState.value -= 1
@@ -73,13 +73,12 @@ class ClockState(
 
 @ExperimentalPagerApi
 @Composable
-fun rememberClockState(
+private fun rememberClockState(
     pagerState: PagerState = rememberPagerState(1),
     playState: MutableState<Boolean> = remember { mutableStateOf(false) },
     twentyFourTimeState: MutableState<Int> = remember { mutableStateOf(INITIAL_TIME_24) },
     fourteenTimeState: MutableState<Int> = remember { mutableStateOf(INITIAL_TIME_14) }
 ) = remember {
-    Log.d("HOME", "rememberClockState: ")
     ClockState(
         pagerState = pagerState,
         playState = playState,
@@ -93,7 +92,6 @@ fun rememberClockState(
 @ExperimentalPagerApi
 @Composable
 fun ClockComponent(modifier: Modifier) {
-    Log.d("HOME", "Home: ClockComponent")
     val clockState = rememberClockState()
 
     LaunchedEffect(clockState.pagerState) {
@@ -111,7 +109,6 @@ fun ClockComponent(modifier: Modifier) {
                 .fillMaxWidth()
                 .fillMaxHeight(.7f)
         ) {
-            Log.d("HOME", "Home: Box")
             val scope = rememberCoroutineScope()
             HorizontalPager(count = 2, state = clockState.pagerState) { page ->
                 Column(
@@ -119,7 +116,6 @@ fun ClockComponent(modifier: Modifier) {
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Log.d("HOME", "Home: Column")
                     if (page == 1) {
                         Clock(clockState.twentyFourTime)
                     } else {
@@ -163,7 +159,7 @@ private fun CountdownTimer(clockState: ClockState) {
         timer = launch {
             tickerFlow(1.seconds, 1.seconds)
                 .flatMapConcat {
-                    if (clockState.currentPage == 1) {
+                    if (clockState.currentPage == PAGE_POSITION_TIMER_24) {
                         flowOf(clockState.twentyFourTime - 1)
                     } else {
                         flowOf(clockState.fourteenTime - 1)
@@ -182,7 +178,7 @@ private fun CountdownTimer(clockState: ClockState) {
                     }
                 }
                 .collect {
-                    if (clockState.currentPage == 1) {
+                    if (clockState.currentPage == PAGE_POSITION_TIMER_24) {
                         clockState.twentyFourTimeState.value = it
                     } else {
                         clockState.fourteenTimeState.value = it
@@ -192,26 +188,13 @@ private fun CountdownTimer(clockState: ClockState) {
     }
 }
 
-@FlowPreview
-@ExperimentalTime
-@ExperimentalPagerApi
-@Preview(showBackground = true)
-@Composable
-private fun PreviewClockComponent() {
-    MaterialTheme(colors = LightColors) {
-        ClockComponent(
-            modifier = Modifier.fillMaxSize()
-        )
-    }
-}
-
 @ExperimentalPagerApi
 @Composable
 private fun BoxScope.ShowClockPages(
     currentPage: Int,
     onClick: (index: Int) -> Unit
 ) {
-    if (currentPage == 1) {
+    if (currentPage == PAGE_POSITION_TIMER_24) {
         ClockPage(
             text = INITIAL_TIME_14.toString(),
             modifier = Modifier
@@ -234,7 +217,6 @@ private fun BoxScope.ShowClockPages(
 
 @Composable
 private fun Clock(time: Int) {
-    Log.d("HOME", "Home: Clock")
     Text(
         text = time.toString(),
         fontFamily = DsDigi,
@@ -256,4 +238,17 @@ private fun ClockPage(
         modifier = modifier
             .clickable(onClick = onClick)
     )
+}
+
+@FlowPreview
+@ExperimentalTime
+@ExperimentalPagerApi
+@Preview(showBackground = true)
+@Composable
+private fun PreviewClockComponent() {
+    MaterialTheme(colors = LightColors) {
+        ClockComponent(
+            modifier = Modifier.fillMaxSize()
+        )
+    }
 }
