@@ -15,9 +15,6 @@ import jermaine.shotclockapp.utils.NAVIGATION_SETTINGS
 import kotlinx.coroutines.FlowPreview
 import kotlin.time.ExperimentalTime
 
-@FlowPreview
-@ExperimentalTime
-@ExperimentalPagerApi
 class MainActivityCompose : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,9 +28,6 @@ class MainActivityCompose : ComponentActivity() {
     }
 }
 
-@FlowPreview
-@ExperimentalTime
-@ExperimentalPagerApi
 @Composable
 fun ShotClockApp() {
     val navController = rememberNavController()

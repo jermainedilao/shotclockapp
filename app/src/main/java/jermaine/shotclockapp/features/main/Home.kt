@@ -18,9 +18,6 @@ import jermaine.shotclockapp.utils.NAVIGATION_SETTINGS
 import kotlinx.coroutines.FlowPreview
 import kotlin.time.ExperimentalTime
 
-@FlowPreview
-@ExperimentalTime
-@ExperimentalPagerApi
 @Composable
 fun Home(navController: NavController) {
     Scaffold(
@@ -48,9 +45,6 @@ fun Home(navController: NavController) {
     }
 }
 
-@FlowPreview
-@ExperimentalTime
-@ExperimentalPagerApi
 @Preview(showBackground = true)
 @Composable
 private fun HomePreview() {

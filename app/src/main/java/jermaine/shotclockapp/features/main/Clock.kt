@@ -7,29 +7,23 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
 import jermaine.shotclockapp.utils.exceptions.TimerCompleted
 import jermaine.shotclockapp.theme.DsDigi
 import jermaine.shotclockapp.theme.LightColors
-import jermaine.shotclockapp.utils.INITIAL_TIME_14
-import jermaine.shotclockapp.utils.INITIAL_TIME_24
-import jermaine.shotclockapp.utils.PAGE_POSITION_TIMER_24
-import jermaine.shotclockapp.utils.tickerFlow
+import jermaine.shotclockapp.utils.*
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
-import kotlin.time.ExperimentalTime
 
-@ExperimentalPagerApi
 private class ClockState(
     val pagerState: PagerState,
     val playState: MutableState<Boolean>,
@@ -71,7 +65,6 @@ private class ClockState(
     }
 }
 
-@ExperimentalPagerApi
 @Composable
 private fun rememberClockState(
     pagerState: PagerState = rememberPagerState(1),
@@ -87,9 +80,6 @@ private fun rememberClockState(
     )
 }
 
-@FlowPreview
-@ExperimentalTime
-@ExperimentalPagerApi
 @Composable
 fun ClockComponent(modifier: Modifier) {
     val clockState = rememberClockState()
@@ -110,7 +100,11 @@ fun ClockComponent(modifier: Modifier) {
                 .fillMaxHeight(.7f)
         ) {
             val scope = rememberCoroutineScope()
-            HorizontalPager(count = 2, state = clockState.pagerState) { page ->
+            HorizontalPager(
+                count = 2,
+                state = clockState.pagerState,
+                modifier = Modifier.testTag(TEST_TAG_PAGER)
+            ) { page ->
                 Column(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.Center,
@@ -150,8 +144,6 @@ fun ClockComponent(modifier: Modifier) {
     }
 }
 
-@FlowPreview
-@ExperimentalPagerApi
 @Composable
 private fun CountdownTimer(clockState: ClockState) {
     var timer: Job? = null
@@ -188,7 +180,6 @@ private fun CountdownTimer(clockState: ClockState) {
     }
 }
 
-@ExperimentalPagerApi
 @Composable
 private fun BoxScope.ShowClockPages(
     currentPage: Int,
@@ -199,7 +190,8 @@ private fun BoxScope.ShowClockPages(
             text = INITIAL_TIME_14.toString(),
             modifier = Modifier
                 .align(Alignment.CenterStart)
-                .padding(start = 8.dp),
+                .padding(start = 8.dp)
+                .testTag(TEST_TAG_CLOCK_PAGE_14)
         ) {
             onClick(0)
         }
@@ -209,6 +201,7 @@ private fun BoxScope.ShowClockPages(
             modifier = Modifier
                 .align(Alignment.CenterEnd)
                 .padding(end = 8.dp)
+                .testTag(TEST_TAG_CLOCK_PAGE_24)
         ) {
             onClick(1)
         }
@@ -220,7 +213,7 @@ private fun Clock(time: Int) {
     Text(
         text = time.toString(),
         fontFamily = DsDigi,
-        fontSize = 200.sp,
+        fontSize = 200.sp
     )
 }
 
@@ -240,9 +233,6 @@ private fun ClockPage(
     )
 }
 
-@FlowPreview
-@ExperimentalTime
-@ExperimentalPagerApi
 @Preview(showBackground = true)
 @Composable
 private fun PreviewClockComponent() {

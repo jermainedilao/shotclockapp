@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -20,6 +21,8 @@ import jermaine.shotclockapp.theme.LightColors
 import jermaine.shotclockapp.theme.Pink
 import jermaine.shotclockapp.theme.ShotClockTheme
 import jermaine.shotclockapp.theme.VeryLightGrey
+import jermaine.shotclockapp.utils.TEST_TAG_PLAY_PAUSE
+import jermaine.shotclockapp.utils.TEST_TAG_RESET
 
 typealias OnPlayListener = () -> Unit
 typealias OnDecreaseTimeListener = () -> Unit
@@ -44,7 +47,8 @@ fun ClockButtons(
             shape = CircleShape,
             modifier = Modifier
                 .size(51.dp)
-                .align(Alignment.CenterHorizontally),
+                .align(Alignment.CenterHorizontally)
+                .testTag(TEST_TAG_RESET),
             elevation = ButtonDefaults
                 .elevation(
                     defaultElevation = 0.dp,
@@ -84,7 +88,8 @@ fun ClockButtons(
             }
             FloatingActionButton(
                 modifier = Modifier
-                    .size(80.dp),
+                    .size(80.dp)
+                    .testTag(TEST_TAG_PLAY_PAUSE),
                 onClick = { onPlay() },
                 elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 8.dp)
             ) {
@@ -94,7 +99,11 @@ fun ClockButtons(
                     } else {
                         painterResource(id = R.drawable.ic_play_arrow_white_44dp)
                     },
-                    contentDescription = "Play",
+                    contentDescription = if (play) {
+                        "Pause"
+                    } else {
+                        "Play"
+                    },
                     tint = Color.White
                 )
             }

@@ -22,7 +22,23 @@ I found myself with nothing to do on a Saturday morning. Since me and my friends
     * Update Architecture (ViewModels, Package by Feature) - Done
     * Jetpack Compose 
       * Main - Done
-      * Settings - WIP
-2. Add unit tests
+      * Settings - DONE
+2. Add UI tests
+   - [x] Initial state should have timer to 24
+   - [x] +1 button should increment timer
+   - [x] +1 button should NOT increment timer IF timer is equal to 24
+   - [x] +1 button should NOT increment timer IF timer is equal to 14
+   - [x] -1 button should decrement timer
+   - [x] -1 button should NOT decrement timer IF timer is equal zero
+   - [x] Reset button should reset timer to 24
+   - [x] Reset button should reset timer to 14
+   - [ ] Play button should play timer (? explore how to test — maybe fast forward time)
+   - [ ] Play button should pause timer (? explore how to test — maybe fast forward time)
+   - [x] Swiping left should change page to 14
+   - [x] Swiping right should change page to 24
+   - [x] Clicking 14 page preview should change page to 14
+   - [x] Clicking 24 page preview should change page to 24
+   - [ ] Clicking settings should navigate to settings
+   - [ ] Test theme change
 3. Add ktlint pre-commit hook
 4. Setup CI/CD on Bitrise
