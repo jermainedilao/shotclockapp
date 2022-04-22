@@ -14,6 +14,7 @@ Android Studio 3.0 or newer.
 
 * [Kotlin](https://kotlinlang.org/) - App is purely written in kotlin.
 * [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)
+* [Jetpack Compose](https://developer.android.com/jetpack/compose)
 
 ### Inspiration
 
