@@ -9,3 +9,4 @@
 .externalNativeBuild
 /keystore.properties
 *.aab
+app/google-services.json
