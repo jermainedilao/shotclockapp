@@ -69,23 +69,10 @@ fun ClockButtons(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Button(
-                border = BorderStroke(1.dp, Pink),
-                shape = CircleShape,
-                modifier = Modifier.size(51.dp),
-                elevation = ButtonDefaults
-                    .elevation(
-                        defaultElevation = 0.dp,
-                        pressedElevation = 0.dp,
-                        focusedElevation = 0.dp
-                    ),
-                onClick = { onDecreaseTime() }
-            ) {
-                Text(
-                    text = "-1",
-                    color = MaterialTheme.colors.onPrimary
-                )
-            }
+            TimeButton(
+                "-1",
+                onClick = onDecreaseTime
+            )
             FloatingActionButton(
                 modifier = Modifier
                     .size(80.dp)
@@ -107,24 +94,35 @@ fun ClockButtons(
                     tint = Color.White
                 )
             }
-            Button(
-                border = BorderStroke(1.dp, Pink),
-                shape = CircleShape,
-                modifier = Modifier.size(51.dp),
-                elevation = ButtonDefaults
-                    .elevation(
-                        defaultElevation = 0.dp,
-                        pressedElevation = 0.dp,
-                        focusedElevation = 0.dp
-                    ),
-                onClick = { onIncreaseTime() }
-            ) {
-                Text(
-                    text = "+1",
-                    color = MaterialTheme.colors.onPrimary,
-                )
-            }
+            TimeButton(
+                "+1",
+                onClick = onIncreaseTime
+            )
         }
+    }
+}
+
+@Composable
+private fun TimeButton(
+    text: String,
+    onClick: () -> Unit
+) {
+    Button(
+        border = BorderStroke(1.dp, Pink),
+        shape = CircleShape,
+        modifier = Modifier.size(51.dp),
+        elevation = ButtonDefaults
+            .elevation(
+                defaultElevation = 0.dp,
+                pressedElevation = 0.dp,
+                focusedElevation = 0.dp
+            ),
+        onClick = { onClick() }
+    ) {
+        Text(
+            text = text,
+            color = MaterialTheme.colors.onPrimary
+        )
     }
 }
 
