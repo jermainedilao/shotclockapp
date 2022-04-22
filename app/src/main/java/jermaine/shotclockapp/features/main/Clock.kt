@@ -4,94 +4,39 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
-import jermaine.shotclockapp.utils.exceptions.TimerCompleted
 import jermaine.shotclockapp.theme.DsDigi
 import jermaine.shotclockapp.theme.LightColors
 import jermaine.shotclockapp.utils.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kotlin.time.Duration.Companion.seconds
 
-private class ClockState(
-    val pagerState: PagerState,
-    val playState: MutableState<Boolean>,
-    val twentyFourTimeState: MutableState<Int>,
-    val fourteenTimeState: MutableState<Int>
+@Composable
+fun Clock(
+    modifier: Modifier,
+    viewModel: ClockViewModel = viewModel()
 ) {
-    val currentPage get() = pagerState.currentPage
-    val play get() = playState.value
-    val twentyFourTime get() = twentyFourTimeState.value
-    val fourteenTime get() = fourteenTimeState.value
+    val pagerState = rememberPagerState(1)
+    val clockState = viewModel.clockState
 
-    fun togglePlay() {
-        playState.value = !playState.value
-    }
-
-    fun stop() {
-        playState.value = false
-    }
-
-    fun resetTimers() {
-        twentyFourTimeState.value = INITIAL_TIME_24
-        fourteenTimeState.value = INITIAL_TIME_14
-    }
-
-    fun increaseTime() {
-        if (currentPage == PAGE_POSITION_TIMER_24) {
-            if (twentyFourTime < INITIAL_TIME_24) twentyFourTimeState.value += 1
-        } else {
-            if (fourteenTime < INITIAL_TIME_14) fourteenTimeState.value += 1
-        }
-    }
-
-    fun decreaseTime() {
-        if (currentPage == PAGE_POSITION_TIMER_24) {
-            if (twentyFourTime > 0) twentyFourTimeState.value -= 1
-        } else {
-            if (fourteenTime > 0) fourteenTimeState.value -= 1
-        }
-    }
-}
-
-@Composable
-private fun rememberClockState(
-    pagerState: PagerState = rememberPagerState(1),
-    playState: MutableState<Boolean> = remember { mutableStateOf(false) },
-    twentyFourTimeState: MutableState<Int> = remember { mutableStateOf(INITIAL_TIME_24) },
-    fourteenTimeState: MutableState<Int> = remember { mutableStateOf(INITIAL_TIME_14) }
-) = remember {
-    ClockState(
-        pagerState = pagerState,
-        playState = playState,
-        twentyFourTimeState = twentyFourTimeState,
-        fourteenTimeState = fourteenTimeState
-    )
-}
-
-@Composable
-fun ClockComponent(modifier: Modifier) {
-    val clockState = rememberClockState()
-
-    LaunchedEffect(clockState.pagerState) {
-        snapshotFlow { clockState.currentPage }
+    LaunchedEffect(pagerState) {
+        snapshotFlow { pagerState.currentPage }
             .collectLatest {
-                clockState.resetTimers()
+                viewModel.onPageChange(it)
             }
     }
-
-    if (clockState.play) CountdownTimer(clockState)
 
     Column(modifier = modifier) {
         Box(
@@ -102,7 +47,7 @@ fun ClockComponent(modifier: Modifier) {
             val scope = rememberCoroutineScope()
             HorizontalPager(
                 count = 2,
-                state = clockState.pagerState,
+                state = pagerState,
                 modifier = Modifier.testTag(TEST_TAG_PAGER)
             ) { page ->
                 Column(
@@ -111,16 +56,16 @@ fun ClockComponent(modifier: Modifier) {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     if (page == 1) {
-                        Clock(clockState.twentyFourTime)
+                        Clock(clockState.twentyFourClockTime)
                     } else {
-                        Clock(clockState.fourteenTime)
+                        Clock(clockState.fourteenClockTime)
                     }
                 }
             }
-            if (!clockState.pagerState.isScrollInProgress) {
-                ShowClockPages(clockState.currentPage) {
+            if (!pagerState.isScrollInProgress) {
+                ShowClockPages(pagerState.currentPage) {
                     scope.launch {
-                        clockState.pagerState.animateScrollToPage(it)
+                        pagerState.animateScrollToPage(it)
                     }
                 }
             }
@@ -129,54 +74,18 @@ fun ClockComponent(modifier: Modifier) {
             modifier = Modifier.fillMaxSize(),
             play = clockState.play,
             onPlay = {
-                clockState.togglePlay()
+                viewModel.togglePlay()
             },
             onIncreaseTime = {
-                clockState.increaseTime()
+                viewModel.increaseTime()
             },
             onDecreaseTime = {
-                clockState.decreaseTime()
+                viewModel.decreaseTime()
             },
             onResetTime = {
-                clockState.resetTimers()
+                viewModel.resetTimer()
             }
         )
-    }
-}
-
-@Composable
-private fun CountdownTimer(clockState: ClockState) {
-    var timer: Job? = null
-    LaunchedEffect(clockState.play) {
-        timer = launch {
-            tickerFlow(1.seconds, 1.seconds)
-                .flatMapConcat {
-                    if (clockState.currentPage == PAGE_POSITION_TIMER_24) {
-                        flowOf(clockState.twentyFourTime - 1)
-                    } else {
-                        flowOf(clockState.fourteenTime - 1)
-                    }
-                }
-                .flowOn(Dispatchers.Default)
-                .onEach {
-                    if (it <= 0) {
-                        timer?.cancel(TimerCompleted)
-                    }
-                }
-                .onCompletion {
-                    if (it is TimerCompleted) {
-                        clockState.stop()
-                        clockState.resetTimers()
-                    }
-                }
-                .collect {
-                    if (clockState.currentPage == PAGE_POSITION_TIMER_24) {
-                        clockState.twentyFourTimeState.value = it
-                    } else {
-                        clockState.fourteenTimeState.value = it
-                    }
-                }
-        }
     }
 }
 
@@ -237,7 +146,7 @@ private fun ClockPage(
 @Composable
 private fun PreviewClockComponent() {
     MaterialTheme(colors = LightColors) {
-        ClockComponent(
+        Clock(
             modifier = Modifier.fillMaxSize()
         )
     }

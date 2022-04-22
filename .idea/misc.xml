@@ -77,6 +77,9 @@
         <entry key="../../../../../layout/compose-model-1650512584546.xml" value="0.4027777777777778" />
         <entry key="../../../../../layout/compose-model-1650514243535.xml" value="0.4935185185185185" />
         <entry key="../../../../../layout/compose-model-1650514381061.xml" value="0.4935185185185185" />
+        <entry key="../../../../../layout/compose-model-1650591687946.xml" value="0.28913134704154425" />
+        <entry key="../../../../../layout/compose-model-1650592250801.xml" value="0.2851851851851852" />
+        <entry key="../../../../../layout/compose-model-1650594110857.xml" value="0.3851851851851852" />
         <entry key="app/src/main/res/drawable/circle_button_pale_default.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/circle_button_pale_pressed.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/circle_button_pale_selector.xml" value="0.18" />
@@ -177,7 +180,7 @@
       </profile-state>
     </entry>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -10,13 +10,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.google.accompanist.pager.ExperimentalPagerApi
 import jermaine.shotclockapp.R
 import jermaine.shotclockapp.theme.LightColors
-import jermaine.shotclockapp.theme.ShotClockTheme
 import jermaine.shotclockapp.utils.NAVIGATION_SETTINGS
-import kotlinx.coroutines.FlowPreview
-import kotlin.time.ExperimentalTime
 
 @Composable
 fun Home(navController: NavController) {
@@ -41,7 +37,7 @@ fun Home(navController: NavController) {
             )
         }
     ) {
-        ClockComponent(Modifier.fillMaxSize())
+        Clock(Modifier.fillMaxSize())
     }
 }
 

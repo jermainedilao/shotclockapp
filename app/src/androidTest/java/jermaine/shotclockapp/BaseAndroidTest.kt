@@ -6,7 +6,4 @@ import org.junit.Rule
 abstract class BaseAndroidTest {
     @get:Rule
     val composeTestRule = createComposeRule()
-//
-//    @get:Rule
-//    val coroutineTestRule = CoroutineTestRule()
 }
