@@ -1,10 +1,9 @@
-package jermaine.shotclockapp.clockcomponent
+package jermaine.shotclockapp.features.main
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.*
 import jermaine.shotclockapp.BaseAndroidTest
-import jermaine.shotclockapp.features.main.Clock
 import jermaine.shotclockapp.theme.ShotClockTheme
 import jermaine.shotclockapp.utils.*
 

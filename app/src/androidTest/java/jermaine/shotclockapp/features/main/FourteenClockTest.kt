@@ -1,4 +1,4 @@
-package jermaine.shotclockapp.clockcomponent
+package jermaine.shotclockapp.features.main
 
 import jermaine.shotclockapp.BaseAndroidTest
 import org.junit.Test

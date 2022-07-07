@@ -10,7 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,7 +22,7 @@ import androidx.navigation.compose.rememberNavController
 import jermaine.shotclockapp.R
 import jermaine.shotclockapp.features.preferences.ShotClockPreferences
 import jermaine.shotclockapp.theme.LightColors
-import jermaine.shotclockapp.utils.ThemeType
+import jermaine.shotclockapp.utils.*
 import kotlinx.coroutines.launch
 
 @Composable
@@ -53,7 +53,8 @@ private fun SettingsContent(navController: NavController) {
                                 }
                             }
                             navController.navigateUp()
-                        }
+                        },
+                        modifier = Modifier.testTag(TEST_TAG_BUTTON_BACK)
                     ) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
@@ -75,7 +76,8 @@ private fun SettingsContent(navController: NavController) {
             ) {
                 Button(
                     modifier = Modifier
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .testTag(TEST_TAG_BUTTON_THEME),
                     elevation = ButtonDefaults
                         .elevation(
                             defaultElevation = 0.dp,
@@ -136,18 +138,21 @@ private fun ThemeOptionsPopup(
         expanded = expanded,
         offset = DpOffset(24.dp, 0.dp),
         onDismissRequest = { onDismiss() },
+        modifier = Modifier.testTag(TEST_TAG_POPUP_THEME)
     ) {
         DropdownMenuItem(
             onClick = {
                 onItemSelected(ThemeType.Light)
-            }
+            },
+            modifier = Modifier.testTag(TEST_TAG_THEME_LIGHT)
         ) {
             Text(text = stringResource(id = R.string.light))
         }
         DropdownMenuItem(
             onClick = {
                 onItemSelected(ThemeType.Dark)
-            }
+            },
+            modifier = Modifier.testTag(TEST_TAG_THEME_DARK)
         ) {
             Text(text = stringResource(id = R.string.dark))
         }

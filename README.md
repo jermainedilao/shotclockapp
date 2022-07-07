@@ -45,7 +45,7 @@ thought, "why not create one of my own?". That's when I decided to create this a
     - [x] Swiping right should change page to 24
     - [x] Clicking 14 page preview should change page to 14
     - [x] Clicking 24 page preview should change page to 24
-    - [ ] Clicking settings should navigate to settings
+    - [x] Clicking settings should navigate to settings
     - [ ] Test theme change
 3. Add Unit Tests
     - [x] Play button should play timer
