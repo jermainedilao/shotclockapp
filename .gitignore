@@ -2,11 +2,10 @@
 .gradle
 /local.properties
 *.idea
-*.idea/
+*.idea/*
 .DS_Store
 /build
 /captures
 .externalNativeBuild
 /keystore.properties
 *.aab
-app/google-services.json
