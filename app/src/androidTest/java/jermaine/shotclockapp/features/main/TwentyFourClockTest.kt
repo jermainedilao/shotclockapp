@@ -17,7 +17,7 @@ class TwentyFourClockTest : BaseAndroidTest() {
             clickMinus1Button() // 22
             clickMinus1Button() // 21
             clickPlus1Button()
-        } isTimerEqualTo 20
+        } isTimerEqualTo 22
     }
 
     @Test
