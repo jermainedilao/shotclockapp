@@ -7,13 +7,13 @@ jobs:
   run-ui-tests:
     executor:
       name: android/android-machine
-
+      resource-class: large
     steps:
       - checkout
-      - android/run-ui-tests:
+      - android/start-emulator-and-run-tests:
           system-image: system-images;android-30;default;x86
 
 workflows:
-  development:
+  android-ci:
     jobs:
       - run-ui-tests
