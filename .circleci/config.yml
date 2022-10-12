@@ -16,7 +16,6 @@ jobs:
           command: |
             touch keystore.properties
             echo $KEYSTORE_PROPERTIES_BASE64 | base64 --decode > keystore.properties
-            cat keystore.properties
       - run:
           name: decode keystore
           command: |
