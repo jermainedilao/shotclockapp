@@ -1,0 +1,19 @@
+version: 2.1
+
+orbs:
+  android: circleci/android@2.1.2
+
+jobs:
+  run-ui-tests:
+    executor:
+      name: android/android-machine
+
+    steps:
+      - checkout
+      - android/run-ui-tests:
+          system-image: system-images;android-30;default;x86
+
+workflows:
+  development:
+    jobs:
+      - run-ui-tests
