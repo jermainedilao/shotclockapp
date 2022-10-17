@@ -33,4 +33,7 @@ jobs:
 workflows:
   android-ci:
     jobs:
-      - run-ui-tests
+      - run-ui-tests:
+          filters:
+            branches:
+              only: master
