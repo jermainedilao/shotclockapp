@@ -40,12 +40,12 @@ android {
             storePassword keyStoreProperties['KEYSTORE_PASSWORD']
         }
     }
-    compileSdkVersion 31
     defaultConfig {
         applicationId "jermaine.shotclockapp"
-        minSdkVersion 23
-        targetSdkVersion 31
-        versionCode 5
+        minSdk 23
+        targetSdk 34
+        compileSdk 34
+        versionCode 6
         versionName "1.0.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -60,48 +60,45 @@ android {
         }
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = compose_version
-    }
-
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    namespace 'jermaine.shotclockapp'
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
 
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1"
 
     implementation platform('com.google.firebase:firebase-bom:26.0.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
 
     testImplementation 'junit:junit:4.13.2'
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2"
-    testImplementation "androidx.arch.core:core-testing:2.1.0"
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1"
+    testImplementation "androidx.arch.core:core-testing:2.2.0"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
 
     // Jetpack Compose
-    implementation "androidx.compose.compiler:compiler:$compose_version"
-    implementation "androidx.compose.runtime:runtime:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling:$compose_version"
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.foundation:foundation:$compose_version"
-    implementation "androidx.navigation:navigation-compose:2.5.0-alpha03"
+    implementation "androidx.compose.compiler:compiler:$composeCompilerVersion"
+    implementation "androidx.compose.runtime:runtime:$composeRuntimeVersion"
+    implementation "androidx.compose.ui:ui-tooling:$composeUiVersion"
+    implementation "androidx.compose.ui:ui:$composeUiVersion"
+    implementation "androidx.compose.material:material:$composeMaterialVersion"
+    implementation "androidx.compose.foundation:foundation:$composeFoundationVersion"
+    implementation "androidx.navigation:navigation-compose:2.7.6"
     implementation "com.google.accompanist:accompanist-pager:0.24.3-alpha"
-    implementation "androidx.activity:activity-compose:1.5.0-alpha03"
+    implementation "androidx.activity:activity-compose:1.8.2"
     implementation "com.google.accompanist:accompanist-systemuicontroller:0.23.1"
 
     // Test rules and transitive dependencies:
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
-    androidTestImplementation "androidx.compose.ui:ui-test:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$composeUiVersion"
+    androidTestImplementation "androidx.compose.ui:ui-test:$composeUiVersion"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$composeUiVersion"
 
     // Preferences DataStore
     implementation "androidx.datastore:datastore-preferences:1.0.0"
