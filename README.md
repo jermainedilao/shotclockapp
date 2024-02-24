@@ -15,6 +15,14 @@ Android Studio 3.0 or newer.
 * [Kotlin](https://kotlinlang.org/) - App is purely written in kotlin.
 * [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)
 * [Jetpack Compose](https://developer.android.com/jetpack/compose)
+* [Firebase Crashlytics](https://firebase.google.com/docs/crashlytics/) - For crash reporting.
+* [Mockito](https://github.com/mockito/mockito) - For mocking objects in unit testing.
+* [Mockito-Kotlin](https://github.com/nhaarman/mockito-kotlin) - Helper class for using mockito with
+  kotlin.
+* [jUnit](https://junit.org/junit4/) - For unit testing.
+* [Kaspresso](https://github.com/KasperskyLab/Kaspresso) - For UI testing.
+* [Kakao](https://github.com/KakaoCup/Kakao) - For UI testing.
+* [DataStore Preferences](https://developer.android.com/topic/libraries/architecture/datastore) - For storing app settings.
 
 ### Inspiration
 
