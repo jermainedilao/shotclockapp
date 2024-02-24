@@ -20,6 +20,8 @@ jobs:
           name: decode keystore
           command: |
             echo $KEYSTORE_BASE64 | base64 --decode > shotclockapp.jks
+      - change-java-version:
+          java-version: 17
       - android/create-avd:
           avd-name: android-ci-avd
           system-image: system-images;android-31;default;x86_64
